@@ -26,7 +26,7 @@ public class Main extends Application {
         Scene scene = new Scene(rootLayout);
 
         showAppHeader();
-        showConnection();
+        showConnectionForm();
 
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -40,9 +40,17 @@ public class Main extends Application {
         rootLayout.setTop(header);
     }
 
-    public void showConnection() throws IOException {
+    public void showConnectionForm() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/ConnectionForm.fxml"));
+        AnchorPane connectionForm = loader.load();
+
+        rootLayout.setCenter(connectionForm);
+    }
+
+    public void showMainWindow() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/MainView.fxml"));
         AnchorPane connectionForm = loader.load();
 
         rootLayout.setCenter(connectionForm);
