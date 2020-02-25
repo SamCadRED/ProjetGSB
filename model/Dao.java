@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-abstract class Dao implements IDao {
+abstract class Dao<T> implements IDao<T> {
 
     protected Connection conn;
     protected String table;
@@ -34,7 +34,7 @@ abstract class Dao implements IDao {
     }
 
     @Override
-    public Object getById(int id) {
+    public T getById(int id) {
         User u = new User();
 
         try {
@@ -52,7 +52,7 @@ abstract class Dao implements IDao {
             e.printStackTrace();
         }
 
-        return u;
+        return (T) u;
     }
 
     @Override
