@@ -1,6 +1,5 @@
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -22,7 +21,7 @@ public class Main extends Application {
     }
 
     public void initRootLayout() throws IOException {
-        rootLayout = FXMLLoader.load(getClass().getResource("view/FirstWindow.fxml"));
+        rootLayout = FXMLLoader.load(getClass().getResource("view/RootLayout.fxml"));
 
         Scene scene = new Scene(rootLayout);
 
@@ -43,10 +42,10 @@ public class Main extends Application {
 
     public void showConnection() throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/ConnectionInfos.fxml"));
-        AnchorPane connectionInfos = loader.load();
+        loader.setLocation(Main.class.getResource("view/ConnectionForm.fxml"));
+        AnchorPane connectionForm = loader.load();
 
-        rootLayout.setCenter(connectionInfos);
+        rootLayout.setCenter(connectionForm);
     }
 
     public static void main(String[] args) {
