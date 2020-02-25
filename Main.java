@@ -9,8 +9,8 @@ import java.io.IOException;
 
 public class Main extends Application {
 
-    private Stage primaryStage;
-    private BorderPane rootLayout;
+    public Stage primaryStage;
+    public BorderPane rootLayout;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
