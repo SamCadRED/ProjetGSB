@@ -17,20 +17,26 @@ public class ConnectionFormController {
     @FXML
     private Button cancel;
 
+    private Main mainApp;
+
     public ConnectionFormController() {} // constructeur
 
     @FXML
-    private void acceptButtonClicked() {
+    public void acceptButtonClicked() {
         System.out.println("Accept button clicked !");
         System.out.println(login.getText());
         System.out.println(password.getText());
-
     }
 
     @FXML
-    private void cancelButtonClicked() {
+    public void cancelButtonClicked() {
         System.out.println("Cancel button clicked !");
         login.setText("");
         password.setText("");
+    }
+
+    public void setMainapp(Main mainApp) {
+        this.mainApp = mainApp;
+        mainApp.getClass();
     }
 }

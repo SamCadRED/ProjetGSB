@@ -12,6 +12,10 @@ public class Main extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
 
+    public Main() {
+
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage = primaryStage;
@@ -26,7 +30,8 @@ public class Main extends Application {
         Scene scene = new Scene(rootLayout);
 
         showAppHeader();
-        showConnectionForm();
+        //showConnectionForm();
+        showMainWindow();
 
         primaryStage.setScene(scene);
         primaryStage.show();
