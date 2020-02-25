@@ -1,4 +1,4 @@
-package model;
+package classe;
 
 public class User {
 
@@ -10,8 +10,12 @@ public class User {
         this.nom = "nomDefaut";
         this.prenom = "prenomDefault";
     }
-
     public User(String nom, String prenom) {
+        this.nom = nom;
+        this.prenom = prenom;
+    }
+    public User(int id, String nom, String prenom) {
+        this.id = id;
         this.nom = nom;
         this.prenom = prenom;
     }
@@ -32,5 +36,13 @@ public class User {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                '}';
     }
 }

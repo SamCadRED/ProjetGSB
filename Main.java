@@ -1,3 +1,4 @@
+import classe.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,7 +15,12 @@ public class Main extends Application {
     private BorderPane rootLayout;
 
     public Main() {
-        MUser user = new MUser();
+        MUser mUser = new MUser();
+
+        User user = new User();
+
+        user = mUser.getUserByID(2);
+        System.out.println(user.toString());
     }
 
     @Override

@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.util.List;
 
 abstract class Dao implements IDao {
+
+    protected Connection conn;
+
     public Dao() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -12,7 +15,7 @@ abstract class Dao implements IDao {
 
             String url = "jdbc:mysql://localhost:8889/gsb_app";
 
-            Connection conn = DriverManager.getConnection(url,"root","root");
+            conn = DriverManager.getConnection(url,"root","root");
             System.out.println("Connection succesful !");
 
         } catch (Exception e) {
