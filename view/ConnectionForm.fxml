@@ -8,8 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="79.0" prefWidth="170.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConnectionFormController">
-   <children>
+<AnchorPane prefHeight="79.0" prefWidth="170.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConnectionFormController"><children>
       <Text layoutX="78.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Connexion">
          <font>
             <Font name="System Bold" size="18.0" />
@@ -23,7 +22,6 @@
             <Button fx:id="cancel" onAction="#cancelButtonClicked" cancelButton="true" mnemonicParsing="false" text="Annuler" />
         </buttons>
       </ButtonBar>
-   </children>
    <padding>
       <Insets bottom="20.0" left="40.0" right="40.0" top="40.0" />
    </padding>
