@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Main extends Application {
 
     private Stage primaryStage;
-    private AnchorPane rootLayout;
+    private BorderPane rootLayout;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -25,8 +25,28 @@ public class Main extends Application {
         rootLayout = FXMLLoader.load(getClass().getResource("view/FirstWindow.fxml"));
 
         Scene scene = new Scene(rootLayout);
+
+        showAppHeader();
+        showConnection();
+
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    public void showAppHeader() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/AppHeader.fxml"));
+        AnchorPane header = loader.load();
+
+        rootLayout.setTop(header);
+    }
+
+    public void showConnection() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/ConnectionInfos.fxml"));
+        AnchorPane connectionInfos = loader.load();
+
+        rootLayout.setCenter(connectionInfos);
     }
 
     public static void main(String[] args) {
