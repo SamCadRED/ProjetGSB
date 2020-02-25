@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.MUser;
 
 import java.io.IOException;
 
@@ -13,7 +14,7 @@ public class Main extends Application {
     private BorderPane rootLayout;
 
     public Main() {
-
+        MUser user = new MUser();
     }
 
     @Override

@@ -26,6 +26,8 @@ public class ConnectionFormController {
         System.out.println("Accept button clicked !");
         System.out.println(login.getText());
         System.out.println(password.getText());
+
+
     }
 
     @FXML
