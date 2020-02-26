@@ -26,7 +26,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("GSB Application");
+        this.primaryStage.setTitle("GSB Wiki");
 
         initRootLayout();
     }
@@ -38,7 +38,8 @@ public class Main extends Application {
 
         showAppHeader();
         //showConnectionForm();
-        showMainWindow();
+        //showMainWindow();
+        showProductInfo();
 
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -63,6 +64,14 @@ public class Main extends Application {
     public void showMainWindow() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/MainView.fxml"));
+        AnchorPane connectionForm = loader.load();
+
+        rootLayout.setCenter(connectionForm);
+    }
+
+    public void showProductInfo() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/ProductInfo.fxml"));
         AnchorPane connectionForm = loader.load();
 
         rootLayout.setCenter(connectionForm);
