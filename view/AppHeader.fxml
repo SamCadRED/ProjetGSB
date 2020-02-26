@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+
 
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AppHeaderController">
    <children>
-      <Text fill="#2533ff" layoutX="-13.0" layoutY="9.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Retour" underline="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0" />
+      <ImageView fitHeight="31.0" fitWidth="228.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="-230.0" AnchorPane.topAnchor="2.0">
+         <image>
+            <Image url="@../util/logo-gsb_crop.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="69.0" layoutY="5.0" text="Wiki" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

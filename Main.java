@@ -38,8 +38,8 @@ public class Main extends Application {
 
         showAppHeader();
         //showConnectionForm();
-        //showMainWindow();
-        showProductInfo();
+        showMainWindow();
+        //showProductInfo();
 
         primaryStage.setScene(scene);
         primaryStage.show();
