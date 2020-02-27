@@ -6,24 +6,13 @@ import classe.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ProductDao extends Dao<Product> {
+public abstract class ProductDao extends Dao {
 
-    @Override
-    public boolean add(Product obj) {
-        return false;
+    public ProductDao() {
+        super();
+        this.table = "Product";
     }
 
-    @Override
-    public boolean update(Product obj) {
-        return false;
-    }
-
-    @Override
-    public boolean delete(Product obj) {
-        return false;
-    }
-
-    @Override
     public Product find(int id) {
         Product product = new Product();
 

@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.Dao;
 import model.UserDao;
 
 import java.io.IOException;
@@ -19,10 +20,10 @@ public class Main extends Application {
         User user = new User();
         user = userDao.find(1);*/
 
-        /*User mDrucker = new User( 4,"drucker", "michel");
+        User mDrucker = new User("drucker", "michel");
         UserDao userDao = new UserDao();
-        userDao.update(mDrucker);
-        //userDao.add(mDrucker);*/
+        //userDao.update(mDrucker);
+        userDao.add(mDrucker);
 
         /*UserDao userDao = new UserDao();
         User user = new User();

@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-abstract class Dao<T> {
+public class Dao<T> {
 
     protected Connection conn;
     protected String table;
@@ -29,15 +29,12 @@ abstract class Dao<T> {
     }
 
     // Permet d'ajouter un objet
-    public abstract boolean add(T obj);
+    public boolean add(T obj) { return false; }
 
     // Permet de mettre à jour un objet
-    public abstract boolean update(T obj);
+    public  boolean update(T obj) { return false; }
 
     // Permet de supprimer l'objet
-    public abstract boolean delete (T obj);
-
-    // Permet de chercher un objet grâce à l'id
-    public abstract T find(int id);
+    public  boolean delete (T obj) { return false; }
 
 }
