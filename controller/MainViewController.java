@@ -6,11 +6,13 @@ import javafx.scene.control.TableColumn;
 
 public class MainViewController {
     @FXML
-    private TableColumn id;
+    private TableColumn libelle;
     @FXML
-    private TableColumn nom;
+    private TableColumn molecule;
     @FXML
-    private TableColumn prenom;
+    private TableColumn prix;
+    @FXML
+    private TableColumn risque;
 
     public MainViewController() {}
 

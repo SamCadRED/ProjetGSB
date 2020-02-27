@@ -38,13 +38,14 @@ public class Main extends Application {
 
         showAppHeader();
         //showConnectionForm();
-        showMainWindow();
-        //showProductInfo();
+        //showMainWindow();
+        showProductInfo();
 
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
+    // Affiche le "Header" de l'application
     public void showAppHeader() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/AppHeader.fxml"));
@@ -53,6 +54,7 @@ public class Main extends Application {
         rootLayout.setTop(header);
     }
 
+    // Affiche le panel de connection
     public void showConnectionForm() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/ConnectionForm.fxml"));
@@ -61,6 +63,7 @@ public class Main extends Application {
         rootLayout.setCenter(connectionForm);
     }
 
+    // Affiche la fenêtre de stock principal
     public void showMainWindow() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/MainView.fxml"));
@@ -69,6 +72,7 @@ public class Main extends Application {
         rootLayout.setCenter(connectionForm);
     }
 
+    // Affiche la page produit
     public void showProductInfo() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/ProductInfo.fxml"));
