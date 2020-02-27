@@ -5,7 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import model.MUser;
+import model.UserDao;
 
 import java.io.IOException;
 
@@ -15,12 +15,19 @@ public class Main extends Application {
     private BorderPane rootLayout;
 
     public Main() {
-        MUser mUser = new MUser();
-
+        /*UserDao userDao = new UserDao();
         User user = new User();
+        user = userDao.find(1);*/
 
-        user = mUser.getUserByID(2);
-        System.out.println(user.toString());
+        /*User mDrucker = new User( 4,"drucker", "michel");
+        UserDao userDao = new UserDao();
+        userDao.update(mDrucker);
+        //userDao.add(mDrucker);*/
+
+        /*UserDao userDao = new UserDao();
+        User user = new User();
+        user = userDao.find(4);
+        userDao.delete(user);*/
     }
 
     @Override
@@ -41,8 +48,8 @@ public class Main extends Application {
         //showMainWindow();
         showProductInfo();
 
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        //primaryStage.setScene(scene);
+        //primaryStage.show();
     }
 
     // Affiche le "Header" de l'application

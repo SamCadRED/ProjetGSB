@@ -2,21 +2,33 @@ package classe;
 
 public class Product {
     private int idProduct;
-    private String productName;
-    private String productRef;
+    private String nameProduct;
+    private String refProduct;
     private double price;
     private String molecule;
     private int risk;
 
-    public Product(String productName, String productRef, double price, String molecule, int risk) {
-        this.productName = productName;
-        this.productRef = productRef;
+    public Product() {}
+
+    public Product(int idProduct) {
+        this.idProduct = idProduct;
+    }
+
+    public Product(String nameProduct, String refProduct, double price, String molecule, int risk) {
+        this.nameProduct = nameProduct;
+        this.refProduct = refProduct;
         this.price = price;
         this.molecule = molecule;
         this.risk = risk;
     }
-    public Product(int idProduct) {
+
+    public Product(int idProduct, String nameProduct, String refProduct, double price, String molecule, int risk) {
         this.idProduct = idProduct;
+        this.nameProduct = nameProduct;
+        this.refProduct = refProduct;
+        this.price = price;
+        this.molecule = molecule;
+        this.risk = risk;
     }
 
     public int getIdProduct() {
@@ -24,19 +36,19 @@ public class Product {
     }
 
     public String getProductName() {
-        return productName;
+        return nameProduct;
     }
 
     public void setProductName(String productName) {
-        this.productName = productName;
+        this.nameProduct = productName;
     }
 
     public String getProductRef() {
-        return productRef;
+        return refProduct;
     }
 
     public void setProductRef(String productRef) {
-        this.productRef = productRef;
+        this.refProduct = productRef;
     }
 
     public double getPrice() {

@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-abstract class Dao<T> implements IDao<T> {
+abstract class Dao<T> {
 
     protected Connection conn;
     protected String table;
@@ -28,45 +28,16 @@ abstract class Dao<T> implements IDao<T> {
         }
     }
 
-    @Override
-    public List getAll() {
-        return null;
-    }
+    // Permet d'ajouter un objet
+    public abstract boolean add(T obj);
 
-    @Override
-    public T getById(int id) {
-        User u = new User();
+    // Permet de mettre à jour un objet
+    public abstract boolean update(T obj);
 
-        try {
-            ResultSet rs = (ResultSet) this.conn.createStatement(
-                    ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY)
-                    .executeQuery("SELECT * FROM "+table+" WHERE idUser = " + id);
+    // Permet de supprimer l'objet
+    public abstract boolean delete (T obj);
 
-            if (rs.first()) {
-                u = new User(rs.getInt("idUser"),
-                        rs.getString("nom"),
-                        rs.getString("prenom"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    // Permet de chercher un objet grâce à l'id
+    public abstract T find(int id);
 
-        return (T) u;
-    }
-
-    @Override
-    public Object add(Object item) {
-        return null;
-    }
-
-    @Override
-    public Object update(Object item) {
-        return null;
-    }
-
-    @Override
-    public boolean delete(Object item) {
-        return false;
-    }
 }

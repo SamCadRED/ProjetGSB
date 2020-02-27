@@ -20,7 +20,6 @@ public class User {
         this.prenom = prenom;
     }
 
-
     public int getId() {
         return id;
     }
@@ -41,11 +40,12 @@ public class User {
         this.prenom = prenom;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                '}';
+    public Object[] getParams() {
+        Object[] tab = {
+                this.id,
+                this.nom,
+                this.prenom
+        };
+        return tab;
     }
 }
