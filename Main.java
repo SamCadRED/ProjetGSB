@@ -1,36 +1,24 @@
-import classe.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import model.Dao;
-import model.UserDao;
+import controller.*;
+import view.*;
 
 import java.io.IOException;
 
 public class Main extends Application {
 
-    private Stage primaryStage;
+    private Stage window;
+    Scene connectionForm, mainWindow;
     private BorderPane rootLayout;
-
-    public Main() {
-        /*UserDao userDao = new UserDao();
-        User user = new User();
-        user = userDao.find(1);*/
-
-        //User mDrucker = new User("drucker", "michel");
-        //UserDao userDao = new UserDao();
-        //userDao.update(mDrucker);
-        //userDao.add(mDrucker);
-
-    }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("GSB Wiki");
+        this.window = primaryStage;
+        this.window.setTitle("GSB Wiki");
 
         initRootLayout();
     }
@@ -38,51 +26,20 @@ public class Main extends Application {
     public void initRootLayout() throws IOException {
         rootLayout = FXMLLoader.load(getClass().getResource("view/RootLayout.fxml"));
 
-        Scene scene = new Scene(rootLayout);
+        ConnectionScene connLayout = new ConnectionScene();
+        connectionForm = new Scene(connLayout, 300, 250);
 
-        showAppHeader();
-        //showConnectionForm();
-        showMainWindow();
-        //showProductInfo();
+        MainWindow mainLayout = new MainWindow();
+        mainWindow = new Scene(mainLayout, 600, 400);
 
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
+        // ActionListener
+        connLayout.btnConnection.setOnAction(e -> {
+            window.setScene(mainWindow);
+        });
 
-    // Affiche le "Header" de l'application
-    public void showAppHeader() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/AppHeader.fxml"));
-        AnchorPane header = loader.load();
-
-        rootLayout.setTop(header);
-    }
-
-    // Affiche le panel de connection
-    public void showConnectionForm() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/ConnectionForm.fxml"));
-        AnchorPane connectionForm = loader.load();
-
-        rootLayout.setCenter(connectionForm);
-    }
-
-    // Affiche la fenêtre de stock principal
-    public void showMainWindow() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/MainView.fxml"));
-        AnchorPane connectionForm = loader.load();
-
-        rootLayout.setCenter(connectionForm);
-    }
-
-    // Affiche la page produit
-    public void showProductInfo() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/ProductInfo.fxml"));
-        AnchorPane connectionForm = loader.load();
-
-        rootLayout.setCenter(connectionForm);
+        window.setScene(connectionForm);
+        window.setResizable(false);
+        window.show();
     }
 
     public static void main(String[] args) {

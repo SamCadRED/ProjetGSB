@@ -18,7 +18,7 @@
       <TextField fx:id="password" layoutX="76.0" layoutY="117.0" prefHeight="27.0" prefWidth="204.0" promptText="Mot de passe" />
       <ButtonBar layoutX="78.0" layoutY="167.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
-          <Button fx:id="accept" onAction="#acceptButtonClicked" defaultButton="true" mnemonicParsing="false" text="Ok" />
+          <Button fx:id="acceptBtn" defaultButton="true" mnemonicParsing="false" text="Ok" />
             <Button fx:id="cancel" onAction="#cancelButtonClicked" cancelButton="true" mnemonicParsing="false" text="Annuler" />
         </buttons>
       </ButtonBar>

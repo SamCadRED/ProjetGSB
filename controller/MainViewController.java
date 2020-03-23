@@ -1,5 +1,6 @@
 package controller;
 
+import classe.Product;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 
@@ -14,6 +15,9 @@ public class MainViewController {
     @FXML
     private TableColumn risque;
 
-    public MainViewController() {}
+    public MainViewController() {
+        //initTable();
+    }
 
+    public void initTable() {}
 }
