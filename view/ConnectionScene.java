@@ -9,7 +9,7 @@ import javafx.scene.layout.AnchorPane;
 public class ConnectionScene extends AnchorPane {
     Label sceneTitle = new Label("Connexion");
     public Label errorConnLabel = new Label("Login ou mot de passe incorrect");
-    public TextField loginField = new TextField("login");
+    public TextField loginField = new TextField();
     public PasswordField passField = new PasswordField();
     public Button btnConnection = new Button("Connexion");
     public Button btnCancel = new Button("Annuler");
