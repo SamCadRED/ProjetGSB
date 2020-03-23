@@ -20,15 +20,11 @@ public class Main extends Application {
         User user = new User();
         user = userDao.find(1);*/
 
-        User mDrucker = new User("drucker", "michel");
-        UserDao userDao = new UserDao();
+        //User mDrucker = new User("drucker", "michel");
+        //UserDao userDao = new UserDao();
         //userDao.update(mDrucker);
-        userDao.add(mDrucker);
+        //userDao.add(mDrucker);
 
-        /*UserDao userDao = new UserDao();
-        User user = new User();
-        user = userDao.find(4);
-        userDao.delete(user);*/
     }
 
     @Override
@@ -46,11 +42,11 @@ public class Main extends Application {
 
         showAppHeader();
         //showConnectionForm();
-        //showMainWindow();
-        showProductInfo();
+        showMainWindow();
+        //showProductInfo();
 
-        //primaryStage.setScene(scene);
-        //primaryStage.show();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     // Affiche le "Header" de l'application
