@@ -34,7 +34,12 @@ public class Main extends Application {
 
         // ActionListener
         connLayout.btnConnection.setOnAction(e -> {
-            window.setScene(mainWindow);
+            String login = connLayout.loginField.getText();
+            if (login == "sam") {
+                window.setScene(mainWindow);
+            } else {
+                System.out.println(login);
+            }
         });
 
         window.setScene(connectionForm);
