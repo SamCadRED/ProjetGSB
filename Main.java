@@ -1,7 +1,11 @@
 import classe.Product;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -37,6 +41,8 @@ public class Main extends Application {
         productScene = new Scene(productLayout);
 
         // ActionListener
+
+        // Cherche les données des produits en base et les affiche dans la scene suivante
         connLayout.btnConnection.setOnAction(e -> {
             ProductDao pDao = new ProductDao();
 
@@ -50,16 +56,33 @@ public class Main extends Application {
                 mainLayout.colRisk.setCellValueFactory(new PropertyValueFactory<>("risk"));
             }
             window.setScene(mainWindow);
-            window.setTitle("WikiGSB");
+            window.setTitle("Wiki GSB - Accueil");
         });
 
+        // Stocke l'Id de la ligne sélectionnée dans une variable
+        //String selectedProductId =
+
+
+        // Passe à la scene suivante avec l'ID
         mainLayout.detailButton.setOnAction(e -> {
+            productLayout.productName.setText("Blue");
             window.setScene(productScene);
             window.setTitle("Détail du produit");
         });
 
+        // Ajout des fonctionnalité du lien retour et quitter
+        mainLayout.header.link.setOnAction(event -> {
+            window.setScene(connectionForm);
+            window.setTitle("Wiki GSB");
+        });
+        productLayout.header.link.setOnAction(event -> {
+            window.setScene(mainWindow);
+            window.setTitle("Wiki GSB - Accueil");
+        });
+
         // fin de la fonction init
         window.setScene(connectionForm);
+        window.setTitle("Wiki GSB");
         window.setResizable(false);
         window.show();
     }

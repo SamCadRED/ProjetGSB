@@ -1,14 +1,17 @@
 package view;
 
 import classe.Product;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 
 public class MainWindow extends AnchorPane {
-    WindowHeader header = new WindowHeader("Produits","Quitter");
+    public WindowHeader header = new WindowHeader("Produits","Quitter");
     public TableView productTable = new TableView();
+    GridPane mainGrid = new GridPane();
     public TableColumn<Product, String> colId = new TableColumn<>("ID");
     public TableColumn<Product, String> colName = new TableColumn<>("Nom");
     public TableColumn<Product, String> colRef = new TableColumn<>("Reference");
@@ -21,14 +24,10 @@ public class MainWindow extends AnchorPane {
         super();
         setComposition();
         this.setBackground(Background.EMPTY);
-        this.getChildren().addAll(header, productTable, detailButton);
+        this.getChildren().addAll(header, mainGrid);
     }
 
     private void setComposition() {
-        productTable.setPrefSize(580, 300);
-        productTable.setLayoutX(10);
-        productTable.setLayoutY(60);
-
         colId.setVisible(true);
         colId.setPrefWidth(80);
         colName.setPrefWidth(80);
@@ -36,11 +35,18 @@ public class MainWindow extends AnchorPane {
         colPrice.setPrefWidth(80);
         colRisk.setPrefWidth(50);
 
+        productTable.setPrefSize(580,280);
         productTable.getColumns().addAll(colId, colName, colRef, colPrice, colRisk);
 
         detailButton.setLayoutX(260);
         detailButton.setLayoutY(360);
         detailButton.setVisible(true);
 
+        mainGrid.setLayoutX(10);
+        mainGrid.setLayoutY(70);
+        mainGrid.setVgap(10);
+        mainGrid.setHgap(10);
+        mainGrid.add(productTable,0,0);
+        mainGrid.add(detailButton,0,1);
     }
 }
