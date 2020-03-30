@@ -1,11 +1,7 @@
 import classe.Product;
 import javafx.application.Application;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -60,12 +56,12 @@ public class Main extends Application {
         });
 
         // Stocke l'Id de la ligne sélectionnée dans une variable
-        //String selectedProductId =
-
+        Object selectedProductId = mainLayout.productTable.getSelectionModel();
 
         // Passe à la scene suivante avec l'ID
         mainLayout.detailButton.setOnAction(e -> {
-            productLayout.productName.setText("Blue");
+            System.out.println(selectedProductId);
+            productLayout.productName.setText("");
             window.setScene(productScene);
             window.setTitle("Détail du produit");
         });
