@@ -21,7 +21,7 @@ public class Dao<T> {
             String url = "jdbc:mysql://localhost:8889/gsb_app";
 
             conn = DriverManager.getConnection(url,"root","root");
-            System.out.println("Connection succesful !");
+            System.out.println("Connection to DB successful !");
 
         } catch (Exception e) {
             e.printStackTrace();

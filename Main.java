@@ -36,25 +36,28 @@ public class Main extends Application {
         ProductDetailScene productLayout = new ProductDetailScene();
         productScene = new Scene(productLayout);
 
-        // ActionListener
-
+        // ActionListener_________________
         // Cherche les données des produits en base et les affiche dans la scene suivante lorsque la connection est validée
         connLayout.btnConnection.setOnAction(e -> {
             ProductDao pDao = new ProductDao();
 
-            // String login =
-
-            mainLayout.productTable.getItems().clear();
-            for (Product p : pDao.fetchAllProduct()) {
-                mainLayout.productTable.getItems().add(p);
-                mainLayout.colId.setCellValueFactory(new PropertyValueFactory<>("idProduct"));
-                mainLayout.colName.setCellValueFactory(new PropertyValueFactory<>("nameProduct"));
-                mainLayout.colRef.setCellValueFactory(new PropertyValueFactory<>("refProduct"));
-                mainLayout.colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-                mainLayout.colRisk.setCellValueFactory(new PropertyValueFactory<>("risk"));
+            if (connLayout.loginField.getText() != "sam") {
+                System.out.println(connLayout.loginField.getText());
+                mainLayout.productTable.getItems().clear();
+                for (Product p : pDao.fetchAllProduct()) {
+                    mainLayout.productTable.getItems().add(p);
+                    mainLayout.colId.setCellValueFactory(new PropertyValueFactory<>("idProduct"));
+                    mainLayout.colName.setCellValueFactory(new PropertyValueFactory<>("nameProduct"));
+                    mainLayout.colRef.setCellValueFactory(new PropertyValueFactory<>("refProduct"));
+                    mainLayout.colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+                    mainLayout.colRisk.setCellValueFactory(new PropertyValueFactory<>("risk"));
+                }
+                window.setScene(mainWindow);
+                window.setTitle("Wiki GSB - Accueil");
+                System.out.println("Login & Password Ok");
+            } else {
+                System.out.println("Wrong Login and Password");
             }
-            window.setScene(mainWindow);
-            window.setTitle("Wiki GSB - Accueil");
         });
 
         // Bouton annuler (efface les données entrées et réinitilaise visuellement la page
@@ -64,13 +67,20 @@ public class Main extends Application {
             connLayout.passField.clear();
         });
 
-        // Stock l'Id de la ligne sélectionnée dans une variable
-        Object selectedProductId = mainLayout.productTable.getSelectionModel().getSelectedItem();
-
         // Passe à la scene suivante avec l'ID
         mainLayout.detailButton.setOnAction(e -> {
-            System.out.println(selectedProductId);
-            productLayout.productName.setText("");
+            Product selectedProduct = (Product) mainLayout.productTable.getSelectionModel().getSelectedItem();
+
+            ProductDao pDao = new ProductDao();
+            Product finalProduct = pDao.find(selectedProduct.getIdProduct());
+
+            productLayout.productName.setText(finalProduct.getProductName());
+            productLayout.productRef.setText(finalProduct.getProductRef());
+            productLayout.price.setText("");
+            productLayout.molecule.setText(finalProduct.getMolecule());
+            productLayout.lab.setText("GSB Laboratory");
+            productLayout.risk.setText("");
+            productLayout.description.setText("");
             window.setScene(productScene);
             window.setTitle("Détail du produit");
         });
@@ -93,8 +103,12 @@ public class Main extends Application {
     }
 
     public boolean checkLoginData(String login, String password) {
-        System.out.println(login + password);
-        if (login == "sam" && password == "sam") {
+        System.out.println(login + " & " + password);
+
+        String bdLogin = "sam";
+        String bdPassword = "sam";
+
+        if (login == bdLogin && password == bdPassword) {
             return true;
         } else {
             return false;
