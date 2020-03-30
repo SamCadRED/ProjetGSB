@@ -7,6 +7,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class ConnectionScene extends AnchorPane {
@@ -45,6 +46,7 @@ public class ConnectionScene extends AnchorPane {
         fieldGrid.add(btnConnection,0,3);
         fieldGrid.add(btnCancel,1,3);
 
+        errorConnLabel.setTextFill(Color.RED);
         errorConnLabel.setVisible(true);
         btnCancel.setVisible(true);
     }

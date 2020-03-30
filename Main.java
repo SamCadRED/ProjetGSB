@@ -38,9 +38,11 @@ public class Main extends Application {
 
         // ActionListener
 
-        // Cherche les données des produits en base et les affiche dans la scene suivante
+        // Cherche les données des produits en base et les affiche dans la scene suivante lorsque la connection est validée
         connLayout.btnConnection.setOnAction(e -> {
             ProductDao pDao = new ProductDao();
+
+            // String login =
 
             mainLayout.productTable.getItems().clear();
             for (Product p : pDao.fetchAllProduct()) {
@@ -55,8 +57,15 @@ public class Main extends Application {
             window.setTitle("Wiki GSB - Accueil");
         });
 
-        // Stocke l'Id de la ligne sélectionnée dans une variable
-        Object selectedProductId = mainLayout.productTable.getSelectionModel();
+        // Bouton annuler (efface les données entrées et réinitilaise visuellement la page
+        connLayout.btnCancel.setOnAction(event -> {
+            connLayout.errorConnLabel.setVisible(false);
+            connLayout.loginField.clear();
+            connLayout.passField.clear();
+        });
+
+        // Stock l'Id de la ligne sélectionnée dans une variable
+        Object selectedProductId = mainLayout.productTable.getSelectionModel().getSelectedItem();
 
         // Passe à la scene suivante avec l'ID
         mainLayout.detailButton.setOnAction(e -> {
@@ -81,6 +90,15 @@ public class Main extends Application {
         window.setTitle("Wiki GSB");
         window.setResizable(false);
         window.show();
+    }
+
+    public boolean checkLoginData(String login, String password) {
+        System.out.println(login + password);
+        if (login == "sam" && password == "sam") {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static void main(String[] args) {
