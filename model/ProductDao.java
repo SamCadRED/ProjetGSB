@@ -5,8 +5,10 @@ import classe.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-public abstract class ProductDao extends Dao {
+public class ProductDao extends Dao {
 
     public ProductDao() {
         super();
@@ -94,5 +96,28 @@ public abstract class ProductDao extends Dao {
         }
 
         return product;
+    }
+
+    public List<Product> fetchAllProduct() {
+        List<Product> items = new ArrayList<Product>();
+        Product p;
+        try {
+            ResultSet rs = this.conn.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM "+this.table+" ORDER BY nameProduct ASC;");
+            while (rs.next()) {
+                p = new Product();
+                p.setIdProduct(rs.getInt(1));
+                p.setNameProduct(rs.getString(2));
+                p.setPrice(rs.getInt(4));
+                p.setMolecule(rs.getString(5));
+                p.setRisk(rs.getInt(6));
+                items.add(p);
+            }
+            return items;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

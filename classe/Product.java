@@ -1,5 +1,9 @@
 package classe;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Product {
     private int idProduct;
     private String nameProduct;
@@ -29,6 +33,26 @@ public class Product {
         this.price = price;
         this.molecule = molecule;
         this.risk = risk;
+    }
+
+    public void setIdProduct(int idProduct) {
+        this.idProduct = idProduct;
+    }
+
+    public String getNameProduct() {
+        return nameProduct;
+    }
+
+    public void setNameProduct(String nameProduct) {
+        this.nameProduct = nameProduct;
+    }
+
+    public String getRefProduct() {
+        return refProduct;
+    }
+
+    public void setRefProduct(String refProduct) {
+        this.refProduct = refProduct;
     }
 
     public int getIdProduct() {
@@ -74,4 +98,5 @@ public class Product {
     public void setRisk(int risk) {
         this.risk = risk;
     }
+
 }
