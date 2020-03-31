@@ -12,8 +12,6 @@ import javafx.scene.text.Font;
 
 public class ConnectionScene extends AnchorPane {
     WindowHeader header = new WindowHeader("Connexion", "");
-    Label login = new Label("Login : ");
-    Label password = new Label("Mot de passe : ");
     GridPane fieldGrid = new GridPane();
 
     public Label errorConnLabel = new Label("Login ou mot de passe incorrect");
@@ -37,12 +35,14 @@ public class ConnectionScene extends AnchorPane {
         fieldGrid.setHgap(20);
         fieldGrid.setVgap(30);
 
-        fieldGrid.add(login,0,0);
-        fieldGrid.add(loginField,1,0);
-        fieldGrid.add(password,0,1);
-        fieldGrid.add(passField,1,1);
+        loginField.setPromptText("Identifiant..");
+        passField.setPromptText("Mot de passe..");
+
+        fieldGrid.add(loginField,0,0,2,1);
+        fieldGrid.add(passField,0,1,2,1);
 
         fieldGrid.add(errorConnLabel,0,2,2,1);
+
         fieldGrid.add(btnConnection,0,3);
         fieldGrid.add(btnCancel,1,3);
 
