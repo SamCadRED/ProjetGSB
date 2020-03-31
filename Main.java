@@ -1,4 +1,5 @@
 import classe.Product;
+import classe.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,11 +10,13 @@ import view.*;
 import model.*;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 public class Main extends Application {
 
     private Stage window;
     Scene connectionForm, mainWindow, productScene;
+    User user;
     private BorderPane rootLayout;
 
     @Override
@@ -44,23 +47,27 @@ public class Main extends Application {
             String login = connLayout.loginField.getText();
             String password = connLayout.passField.getText();
 
-            if (checkLoginData(login, password)) {
-                System.out.println(connLayout.loginField.getText());
-                mainLayout.productTable.getItems().clear();
-                for (Product p : pDao.fetchAllProduct()) {
-                    mainLayout.productTable.getItems().add(p);
-                    mainLayout.colId.setCellValueFactory(new PropertyValueFactory<>("idProduct"));
-                    mainLayout.colName.setCellValueFactory(new PropertyValueFactory<>("nameProduct"));
-                    mainLayout.colRef.setCellValueFactory(new PropertyValueFactory<>("refProduct"));
-                    mainLayout.colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-                    mainLayout.colRisk.setCellValueFactory(new PropertyValueFactory<>("risk"));
+            try {
+                if (checkLoginData(login, password)) {
+                    System.out.println(connLayout.loginField.getText());
+                    mainLayout.productTable.getItems().clear();
+                    for (Product p : pDao.fetchAllProduct()) {
+                        mainLayout.productTable.getItems().add(p);
+                        mainLayout.colId.setCellValueFactory(new PropertyValueFactory<>("idProduct"));
+                        mainLayout.colName.setCellValueFactory(new PropertyValueFactory<>("nameProduct"));
+                        mainLayout.colRef.setCellValueFactory(new PropertyValueFactory<>("refProduct"));
+                        mainLayout.colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+                        mainLayout.colRisk.setCellValueFactory(new PropertyValueFactory<>("risk"));
+                    }
+                    window.setScene(mainWindow);
+                    window.setTitle("Wiki GSB - Accueil");
+                    System.out.println("Login & Password Ok");
+                } else {
+                    connLayout.errorConnLabel.setVisible(true);
+                    System.out.println("Wrong Login and Password");
                 }
-                window.setScene(mainWindow);
-                window.setTitle("Wiki GSB - Accueil");
-                System.out.println("Login & Password Ok");
-            } else {
-                connLayout.errorConnLabel.setVisible(true);
-                System.out.println("Wrong Login and Password");
+            } catch (NoSuchAlgorithmException ex) {
+                ex.printStackTrace();
             }
         });
 
@@ -106,11 +113,15 @@ public class Main extends Application {
         window.show();
     }
 
-    public boolean checkLoginData(String login, String password) {
-        System.out.println(login + " & " + password);
+    public boolean checkLoginData(String login, String password) throws NoSuchAlgorithmException {
+        //String bdLogin = "sam";
+        //String bdPassword = "sam";
 
-        String bdLogin = "sam";
-        String bdPassword = "sam";
+        AuthenticationModel auth = new AuthenticationModel();
+        User user = auth.checkAuth(login, password);
+
+        String bdLogin = user.getLogin();
+        String bdPassword = user.getPassword();
 
         if (login.equals(bdLogin) && password.equals(bdPassword)) {
             return true;

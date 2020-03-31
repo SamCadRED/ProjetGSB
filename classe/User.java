@@ -3,25 +3,35 @@ package classe;
 public class User {
 
     private int id;
+    private String login;
     private String nom;
     private String prenom;
+    private String password;
 
-    public User() {
-        this.nom = "nomDefaut";
-        this.prenom = "prenomDefault";
-    }
-    public User(String nom, String prenom) {
-        this.nom = nom;
-        this.prenom = prenom;
-    }
-    public User(int id, String nom, String prenom) {
+    public User() {}
+
+    public User(int id, String login, String nom, String prenom, String password) {
         this.id = id;
+        this.login = login;
         this.nom = nom;
         this.prenom = prenom;
+        this.password = password;
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getNom() {
@@ -40,12 +50,11 @@ public class User {
         this.prenom = prenom;
     }
 
-    public Object[] getParams() {
-        Object[] tab = {
-                this.id,
-                this.nom,
-                this.prenom
-        };
-        return tab;
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

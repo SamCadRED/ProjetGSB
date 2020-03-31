@@ -68,7 +68,6 @@ public class UserDao extends Dao<User> {
 
     public User find(int id) {
         User user = new User();
-
         try {
             ResultSet rs = this.conn.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -76,7 +75,7 @@ public class UserDao extends Dao<User> {
             ).executeQuery("SELECT * FROM User WHERE idUser = " + id);
 
             if (rs.first()) {
-                user = new User(id, rs.getString("nom"), rs.getString("prenom"));
+                user = new User(id,rs.getString("login"), rs.getString("nom"), rs.getString("prenom"), rs.getString("motDePasse"));
             }
 
         } catch (SQLException e) {
