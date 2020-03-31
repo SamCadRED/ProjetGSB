@@ -1,15 +1,12 @@
 package view;
 
 import javafx.geometry.Insets;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
 
 public class ProductDetailScene extends AnchorPane {
     public WindowHeader header = new WindowHeader("Détails du produit", "Retour");
-    GridPane infoGrid = new GridPane();
+    GridPane infoPanel = new GridPane();
     Label productNameLib = new Label("Produit :");
     Label productRefLib = new Label("Reference :");
     Label priceLib = new Label("Prix (TTC) :");
@@ -30,34 +27,35 @@ public class ProductDetailScene extends AnchorPane {
         super();
         setComposition();
         this.setBackground(Background.EMPTY);
-        this.getChildren().addAll(header, infoGrid);
+        this.getChildren().addAll(header, infoPanel);
     }
 
     private void setComposition() {
-        infoGrid.setLayoutY(70);
-        infoGrid.setPadding(new Insets(20));
-        infoGrid.setHgap(30);
-        infoGrid.setVgap(10);
+        infoPanel.setLayoutY(50);
+        infoPanel.setPrefSize(550, 400);
+        infoPanel.setPadding(new Insets(20));
+        infoPanel.setHgap(30);
+        infoPanel.setVgap(30);
 
-        infoGrid.add(productNameLib,0,1);
-        infoGrid.add(productName,1,1);
+        infoPanel.add(productNameLib,0,1);
+        infoPanel.add(productName,1,1);
 
-        infoGrid.add(productRefLib,3,1);
-        infoGrid.add(productRef,4,1);
+        infoPanel.add(productRefLib,3,1);
+        infoPanel.add(productRef,4,1);
 
-        infoGrid.add(priceLib,0,2);
-        infoGrid.add(price,1,2);
+        infoPanel.add(priceLib,0,2);
+        infoPanel.add(price,1,2);
 
-        infoGrid.add(moleculeLib,3,2);
-        infoGrid.add(molecule,4,2);
+        infoPanel.add(moleculeLib,3,2);
+        infoPanel.add(molecule,4,2);
 
-        infoGrid.add(labLib,0,3);
-        infoGrid.add(lab,1,3);
+        infoPanel.add(labLib,0,3);
+        infoPanel.add(lab,1,3);
 
-        infoGrid.add(riskLib,3,3);
-        infoGrid.add(risk,4,3);
+        infoPanel.add(riskLib,3,3);
+        infoPanel.add(risk,4,3);
 
-        infoGrid.add(descLib,0,4);
-        infoGrid.add(description,1,4,2,1);
+        infoPanel.add(descLib,0,4);
+        infoPanel.add(description,1,4,2,1);
     }
 }

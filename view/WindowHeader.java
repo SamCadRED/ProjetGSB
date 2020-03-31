@@ -22,8 +22,9 @@ public class WindowHeader extends AnchorPane {
         link.setLayoutX(10);
         link.setLayoutY(40);
         link.setStyle("-fx-border-width: 0px;");
-        if(linkText == "") {
-            link.setVisible(false);}
+        if(linkText == "") {link.setVisible(false);}
+
+
 
         this.getChildren().addAll(sceneTitle, link);
     }

@@ -1,53 +1,52 @@
 package view;
 
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 public class ConnectionScene extends AnchorPane {
     WindowHeader header = new WindowHeader("Connexion", "");
-    GridPane fieldGrid = new GridPane();
+    GridPane gridPane = new GridPane();
 
-    public Label errorConnLabel = new Label("Login ou mot de passe incorrect");
+    Label login = new Label("Identifiant :");
+    Label passwd = new Label("Mot de passe :");
     public TextField loginField = new TextField();
     public PasswordField passField = new PasswordField();
+
+    public Label errorConnLabel = new Label("Login ou mot de passe incorrect");
     public Button btnConnection = new Button("Connexion");
     public Button btnCancel = new Button("Annuler");
 
     public ConnectionScene() {
         super();
         setComposition();
-        this.getChildren().addAll(header, fieldGrid);
+        this.getChildren().addAll(header, gridPane);
     }
 
     private void setComposition() {
         btnConnection.setDefaultButton(true);
         btnCancel.setCancelButton(true);
 
-        fieldGrid.setLayoutY(60);
-        fieldGrid.setPadding(new Insets(20));
-        fieldGrid.setHgap(20);
-        fieldGrid.setVgap(30);
+        gridPane.setLayoutY(40);
+        gridPane.setAlignment(Pos.CENTER);
+        gridPane.setHgap(10);
+        gridPane.setVgap(20);
+        gridPane.setPadding(new Insets(25));
+        gridPane.add(login,0,0);
+        gridPane.add(loginField, 1,0);
+        gridPane.add(passwd,0,1);
+        gridPane.add(passField,1,1);
+        gridPane.add(errorConnLabel,0,2,2,1);
+        gridPane.add(btnCancel, 0,3);
+        gridPane.add(btnConnection,1,3);
 
-        loginField.setPromptText("Identifiant..");
-        passField.setPromptText("Mot de passe..");
-
-        fieldGrid.add(loginField,0,0,2,1);
-        fieldGrid.add(passField,0,1,2,1);
-
-        fieldGrid.add(errorConnLabel,0,2,2,1);
-
-        fieldGrid.add(btnConnection,0,3);
-        fieldGrid.add(btnCancel,1,3);
 
         errorConnLabel.setTextFill(Color.RED);
-        errorConnLabel.setVisible(true);
+        errorConnLabel.setVisible(false);
         btnCancel.setVisible(true);
     }
 }

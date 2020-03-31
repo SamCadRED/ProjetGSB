@@ -34,14 +34,17 @@ public class Main extends Application {
         mainWindow = new Scene(mainLayout, 600, 400);
 
         ProductDetailScene productLayout = new ProductDetailScene();
-        productScene = new Scene(productLayout);
+        productScene = new Scene(productLayout, 600,400);
 
         // ActionListener_________________
         // Cherche les données des produits en base et les affiche dans la scene suivante lorsque la connection est validée
         connLayout.btnConnection.setOnAction(e -> {
             ProductDao pDao = new ProductDao();
 
-            if (connLayout.loginField.getText() != "sam") {
+            String login = connLayout.loginField.getText();
+            String password = connLayout.passField.getText();
+
+            if (checkLoginData(login, password)) {
                 System.out.println(connLayout.loginField.getText());
                 mainLayout.productTable.getItems().clear();
                 for (Product p : pDao.fetchAllProduct()) {
@@ -56,6 +59,7 @@ public class Main extends Application {
                 window.setTitle("Wiki GSB - Accueil");
                 System.out.println("Login & Password Ok");
             } else {
+                connLayout.errorConnLabel.setVisible(true);
                 System.out.println("Wrong Login and Password");
             }
         });
@@ -108,7 +112,7 @@ public class Main extends Application {
         String bdLogin = "sam";
         String bdPassword = "sam";
 
-        if (login == bdLogin && password == bdPassword) {
+        if (login.equals(bdLogin) && password.equals(bdPassword)) {
             return true;
         } else {
             return false;
