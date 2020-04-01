@@ -98,7 +98,7 @@ public class AddProductForm extends AnchorPane {
         formPanel.add(quantityLib,3,2);
         formPanel.add(quantity,4,2);
 
-        formPanel.add(descLib,0,3);
+        formPanel.add(descLib,0,3,2,1);
         formPanel.add(description,1,3,4,1);
 
         mainGrid.setLayoutX(10);
