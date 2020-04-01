@@ -19,6 +19,7 @@ public class ProductDetailScene extends AnchorPane {
     public Label productRef = new Label("");
     public Label price = new Label("");
     public Label molecule = new Label("");
+    public Label manufacturer = new Label("");
     public Label lab = new Label("");
     public Label risk = new Label("");
     public Label description = new Label("");

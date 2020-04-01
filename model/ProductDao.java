@@ -17,8 +17,8 @@ public class ProductDao extends Dao {
 
     public boolean add(Product obj){
         int idProduct = obj.getIdProduct();
-        String name = obj.getProductName();
-        String ref = obj.getProductRef();
+        String name = obj.getNameProduct();
+        String ref = obj.getRefProduct();
         double price = obj.getPrice();
         String molecule = obj.getMolecule();
         int risk = obj.getRisk();
@@ -38,8 +38,8 @@ public class ProductDao extends Dao {
 
     public boolean update(Product obj) {
         int id = obj.getIdProduct();
-        String name = obj.getProductName();
-        String ref = obj.getProductRef();
+        String name = obj.getNameProduct();
+        String ref = obj.getRefProduct();
         double price = obj.getPrice();
         String molecule = obj.getMolecule();
         int risk = obj.getRisk();
@@ -87,7 +87,9 @@ public class ProductDao extends Dao {
                         rs.getString("refProduct"),
                         rs.getDouble("price"),
                         rs.getString("molecule"),
-                        rs.getInt("risk")
+                        rs.getString("manufacturer"),
+                        rs.getInt("risk"),
+                        rs.getString("description")
                 );
             }
 

@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AuthenticationModel extends Dao {
+    User errorUser = new User(0, "Error", "Error", "Error", "Error");
     public AuthenticationModel() {
         super();
         this.table = "`User`";
@@ -33,11 +34,11 @@ public class AuthenticationModel extends Dao {
             if (u.getLogin().equals(login) && u.getPassword().equals(hashWord)) {
                 return u;
             } else {
-                return null;
+                return errorUser;
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            return errorUser;
         }
     }
 

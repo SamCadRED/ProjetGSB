@@ -73,9 +73,7 @@ public class Main extends Application {
 
         // Bouton annuler (efface les données entrées et réinitilaise visuellement la page
         connLayout.btnCancel.setOnAction(event -> {
-            connLayout.errorConnLabel.setVisible(false);
-            connLayout.loginField.clear();
-            connLayout.passField.clear();
+            resetScreen();
         });
 
         // Passe à la scene suivante avec l'ID
@@ -85,19 +83,21 @@ public class Main extends Application {
             ProductDao pDao = new ProductDao();
             Product finalProduct = pDao.find(selectedProduct.getIdProduct());
 
-            productLayout.productName.setText(finalProduct.getProductName());
-            productLayout.productRef.setText(finalProduct.getProductRef());
-            productLayout.price.setText("");
+            productLayout.productName.setText(finalProduct.getNameProduct());
+            productLayout.productRef.setText(finalProduct.getRefProduct());
+            productLayout.price.setText("");//TODO make it a string
             productLayout.molecule.setText(finalProduct.getMolecule());
-            productLayout.lab.setText("GSB Laboratory");
-            productLayout.risk.setText("");
-            productLayout.description.setText("");
+            productLayout.lab.setText(finalProduct.getManufacturer());
+            productLayout.risk.setText("");//TODO make it a string
+            productLayout.description.setText(finalProduct.getDescription());
+
             window.setScene(productScene);
             window.setTitle("Détail du produit");
         });
 
         // Ajout des fonctionnalité du lien retour et quitter
         mainLayout.header.link.setOnAction(event -> {
+            resetScreen();
             window.setScene(connectionForm);
             window.setTitle("Wiki GSB");
         });
@@ -116,17 +116,23 @@ public class Main extends Application {
     public boolean checkLoginData(String login, String password) throws NoSuchAlgorithmException {
         AuthenticationModel auth = new AuthenticationModel();
 
-        User user = auth.checkAuth(login, password);
+        user = auth.checkAuth(login, password);
 
         String bdLogin = user.getLogin();
         String bdPassword = user.getPassword();
 
         if (login.equals(bdLogin) && password.equals(bdPassword)) {
             return true;
-        } else if (user.equals(null)) {
-            return false;
         }
         return false;
+    }
+
+    public void resetScreen() {
+        try {
+            initRootLayout();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {

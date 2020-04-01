@@ -10,7 +10,9 @@ public class Product {
     private String refProduct;
     private double price;
     private String molecule;
+    private String manufacturer;
     private int risk;
+    private String description;
 
     public Product() {}
 
@@ -18,21 +20,19 @@ public class Product {
         this.idProduct = idProduct;
     }
 
-    public Product(String nameProduct, String refProduct, double price, String molecule, int risk) {
-        this.nameProduct = nameProduct;
-        this.refProduct = refProduct;
-        this.price = price;
-        this.molecule = molecule;
-        this.risk = risk;
-    }
-
-    public Product(int idProduct, String nameProduct, String refProduct, double price, String molecule, int risk) {
+    public Product(int idProduct, String nameProduct, String refProduct, double price, String molecule, String manufacturer, int risk, String description) {
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
         this.refProduct = refProduct;
         this.price = price;
         this.molecule = molecule;
+        this.manufacturer = manufacturer;
         this.risk = risk;
+        this.description = description;
+    }
+
+    public int getIdProduct() {
+        return idProduct;
     }
 
     public void setIdProduct(int idProduct) {
@@ -55,26 +55,6 @@ public class Product {
         this.refProduct = refProduct;
     }
 
-    public int getIdProduct() {
-        return idProduct;
-    }
-
-    public String getProductName() {
-        return nameProduct;
-    }
-
-    public void setProductName(String productName) {
-        this.nameProduct = productName;
-    }
-
-    public String getProductRef() {
-        return refProduct;
-    }
-
-    public void setProductRef(String productRef) {
-        this.refProduct = productRef;
-    }
-
     public double getPrice() {
         return price;
     }
@@ -91,6 +71,14 @@ public class Product {
         this.molecule = molecule;
     }
 
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
     public int getRisk() {
         return risk;
     }
@@ -99,4 +87,11 @@ public class Product {
         this.risk = risk;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

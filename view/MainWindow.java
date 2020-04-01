@@ -19,6 +19,7 @@ public class MainWindow extends AnchorPane {
     public TableColumn<Product, String> colRisk = new TableColumn<>("Risque");
 
     public Button detailButton = new Button("Voir le détail");
+    public Button addProduct = new Button("Ajouter un médicament");
 
     public MainWindow() {
         super();
@@ -42,11 +43,16 @@ public class MainWindow extends AnchorPane {
         detailButton.setLayoutY(360);
         detailButton.setVisible(true);
 
+        addProduct.setLayoutX(300);
+        addProduct.setLayoutY(360);
+        addProduct.setVisible(true);
+
         mainGrid.setLayoutX(10);
         mainGrid.setLayoutY(70);
         mainGrid.setVgap(10);
         mainGrid.setHgap(10);
         mainGrid.add(productTable,0,0);
         mainGrid.add(detailButton,0,1);
+        mainGrid.add(addProduct,0,1);
     }
 }
