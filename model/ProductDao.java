@@ -117,7 +117,7 @@ public class ProductDao extends Dao {
                 p.setNameProduct(rs.getString(2));
                 p.setPrice(rs.getInt(4));
                 p.setMolecule(rs.getString(5));
-                p.setRisk(rs.getInt(6));
+                p.setRisk(rs.getInt(7));
                 items.add(p);
             }
             return items;

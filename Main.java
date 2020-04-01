@@ -94,6 +94,16 @@ public class Main extends Application {
 
         });
         mainLayout.addProduct.setOnAction(event -> {
+            addFormLayout.productName.clear();
+            addFormLayout.productRef.clear();
+            addFormLayout.price.clear();
+            addFormLayout.molecule.clear();
+            addFormLayout.manufacturer.clear();
+            addFormLayout.risk.clear();
+            addFormLayout.description.clear();
+
+            addFormLayout.productAddedLabel.setVisible(false);
+            addFormLayout.mainGrid.setVisible(true);
             window.setScene(addProductScene);
             window.setTitle(" Wiki GSB - Ajouter un produit");
         });
