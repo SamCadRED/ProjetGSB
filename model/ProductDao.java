@@ -1,7 +1,6 @@
 package model;
 
 import classe.Product;
-import classe.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,18 +21,18 @@ public class ProductDao extends Dao {
         double price = obj.getPrice();
         String molecule = obj.getMolecule();
         String manufacturer = obj.getManufacturer();
-        int risk = obj.getRisk();
+        int quantity = obj.getQuantity();
         String description = obj.getDescription();
-        String SQL = "INSERT INTO `Product` (`idProduct`, `nameProduct`, `refProduct`, `price`, `manufacturer`, `molecule`, `risk`, `description`) VALUES (NULL, '";
+        String SQL = "INSERT INTO `Product` (`idProduct`, `nameProduct`, `refProduct`, `price`, `manufacturer`, `molecule`, `quantity`, `description`) VALUES (NULL, '";
         try {
             this.conn.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY
-            ).executeUpdate(SQL + name + "', '" + ref + "', " + price + ", '" + molecule + "', '" + manufacturer + "', " + risk + ", '" + description + "');");
+            ).executeUpdate(SQL + name + "', '" + ref + "', " + price + ", '" + molecule + "', '" + manufacturer + "', " + quantity + ", '" + description + "');");
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println(SQL + name + "', '" + ref + "', " + price + ", '" + molecule + "', '" + manufacturer + "', " + risk + ", '" + description + "');");
+            System.out.println(SQL + name + "', '" + ref + "', " + price + ", '" + molecule + "', '" + manufacturer + "', " + quantity + ", '" + description + "');");
             return false;
         }
     }
@@ -45,14 +44,14 @@ public class ProductDao extends Dao {
         double price = obj.getPrice();
         String molecule = obj.getMolecule();
         String manufacturer = obj.getManufacturer();
-        int risk = obj.getRisk();
+        int quantity = obj.getQuantity();
         String description = obj.getDescription();
         String SQL = "UPDATE `Product` SET `name`='";
         try {
             this.conn.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY
-            ).executeUpdate(SQL + name + "',`refProduct`='" + ref + "' `price`='" + price + "' `molecule`='" + molecule + "' `risk`=" + risk + "' WHERE `idProduct`="+id);
+            ).executeUpdate(SQL + name + "',`refProduct`='" + ref + "' `price`='" + price + "' `molecule`='" + molecule + "' `quantity`=" + quantity + " WHERE `idProduct`="+id);
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -92,7 +91,7 @@ public class ProductDao extends Dao {
                         rs.getDouble("price"),
                         rs.getString("molecule"),
                         rs.getString("manufacturer"),
-                        rs.getInt("risk"),
+                        rs.getInt("quantity"),
                         rs.getString("description")
                 );
             }
@@ -115,9 +114,10 @@ public class ProductDao extends Dao {
                 p = new Product();
                 p.setIdProduct(rs.getInt(1));
                 p.setNameProduct(rs.getString(2));
+                p.setRefProduct(rs.getString(3));
                 p.setPrice(rs.getInt(4));
                 p.setMolecule(rs.getString(5));
-                p.setRisk(rs.getInt(7));
+                p.setQuantity(rs.getInt(7));
                 items.add(p);
             }
             return items;

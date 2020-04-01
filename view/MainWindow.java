@@ -1,7 +1,6 @@
 package view;
 
 import classe.Product;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -18,7 +17,7 @@ public class MainWindow extends AnchorPane {
     public TableColumn<Product, String> colName = new TableColumn<>("Nom");
     public TableColumn<Product, String> colRef = new TableColumn<>("Reference");
     public TableColumn<Product, String> colPrice = new TableColumn<>("Prix");
-    public TableColumn<Product, String> colRisk = new TableColumn<>("Risque");
+    public TableColumn<Product, String> colQuantity = new TableColumn<>("Risque");
 
     public Button detailButton = new Button("Voir le détail");
     public Button addProduct = new Button("Ajouter un médicament");
@@ -41,10 +40,10 @@ public class MainWindow extends AnchorPane {
         colName.setPrefWidth(80);
         colRef.setPrefWidth(80);
         colPrice.setPrefWidth(80);
-        colRisk.setPrefWidth(50);
+        colQuantity.setPrefWidth(50);
 
         productTable.setPrefSize(580,280);
-        productTable.getColumns().addAll(colId, colName, colRef, colPrice, colRisk);
+        productTable.getColumns().addAll(colId, colName, colRef, colPrice, colQuantity);
 
         detailButton.setLayoutX(260);
         detailButton.setLayoutY(360);

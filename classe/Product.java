@@ -1,9 +1,5 @@
 package classe;
 
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
-
 public class Product {
     private int idProduct;
     private String nameProduct;
@@ -11,7 +7,7 @@ public class Product {
     private double price;
     private String molecule;
     private String manufacturer;
-    private int risk;
+    private int quantity;
     private String description;
 
     public Product() {}
@@ -20,24 +16,24 @@ public class Product {
         this.idProduct = idProduct;
     }
 
-    public Product(String nameProduct, String refProduct, double price, String molecule, String manufacturer, int risk, String description) {
+    public Product(String nameProduct, String refProduct, double price, String molecule, String manufacturer, int quantity, String description) {
         this.nameProduct = nameProduct;
         this.refProduct = refProduct;
         this.price = price;
         this.molecule = molecule;
         this.manufacturer = manufacturer;
-        this.risk = risk;
+        this.quantity = quantity;
         this.description = description;
     }
 
-    public Product(int idProduct, String nameProduct, String refProduct, double price, String molecule, String manufacturer, int risk, String description) {
+    public Product(int idProduct, String nameProduct, String refProduct, double price, String molecule, String manufacturer, int quantity, String description) {
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
         this.refProduct = refProduct;
         this.price = price;
         this.molecule = molecule;
         this.manufacturer = manufacturer;
-        this.risk = risk;
+        this.quantity = quantity;
         this.description = description;
     }
 
@@ -89,12 +85,12 @@ public class Product {
         this.manufacturer = manufacturer;
     }
 
-    public int getRisk() {
-        return risk;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setRisk(int risk) {
-        this.risk = risk;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public String getDescription() {

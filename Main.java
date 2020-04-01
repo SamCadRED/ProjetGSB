@@ -3,11 +3,14 @@ import classe.User;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import view.*;
 import model.*;
 
+import javax.swing.*;
 import java.io.IOException;
+import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 
 public class Main extends Application {
@@ -20,6 +23,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         this.window = primaryStage;
         this.window.setTitle("GSB Wiki");
+        this.window.getIcons().add(new Image("util/g_logo.png"));
 
         initRootLayout();
     }
@@ -79,10 +83,10 @@ public class Main extends Application {
 
                 productLayout.productName.setText(finalProduct.getNameProduct());
                 productLayout.productRef.setText(finalProduct.getRefProduct());
-                productLayout.price.setText("");//TODO make it a string
+                productLayout.price.setText(Double.toString(finalProduct.getPrice()));
                 productLayout.molecule.setText(finalProduct.getMolecule());
-                productLayout.lab.setText(finalProduct.getManufacturer());
-                productLayout.risk.setText("");//TODO make it a string
+                productLayout.manufacturer.setText(finalProduct.getManufacturer());
+                productLayout.quantity.setText(Integer.toString(finalProduct.getQuantity()));
                 productLayout.description.setText(finalProduct.getDescription());
 
                 window.setScene(productScene);
@@ -93,13 +97,14 @@ public class Main extends Application {
 
 
         });
+        // Rafraîchit les données de la page lorsque l'on retourne sur la page de produits
         mainLayout.addProduct.setOnAction(event -> {
             addFormLayout.productName.clear();
             addFormLayout.productRef.clear();
             addFormLayout.price.clear();
             addFormLayout.molecule.clear();
             addFormLayout.manufacturer.clear();
-            addFormLayout.risk.clear();
+            addFormLayout.quantity.clear();
             addFormLayout.description.clear();
 
             addFormLayout.productAddedLabel.setVisible(false);
@@ -112,12 +117,12 @@ public class Main extends Application {
         addFormLayout.addProduct.setOnAction(event -> {
             String productName =  addFormLayout.productName.getText();
             String productRef = addFormLayout.productRef.getText();
-            int price = Integer.parseInt(addFormLayout.price.getText());
+            Double price = Double.parseDouble(addFormLayout.price.getText());
             String molecule = addFormLayout.molecule.getText();
             String manufacturer = addFormLayout.manufacturer.getText();
-            int risk = Integer.parseInt(addFormLayout.risk.getText());
+            int quantity = Integer.parseInt(addFormLayout.quantity.getText());
             String description = addFormLayout.description.getText();
-            Product product = new Product(productName, productRef, price, molecule, manufacturer, risk, description);
+            Product product = new Product(productName, productRef, price, molecule, manufacturer, quantity, description);
             if (product != null) {
                 ProductDao productDao = new ProductDao();
                 productDao.add(product);
@@ -138,10 +143,16 @@ public class Main extends Application {
         });
         productLayout.header.link.setOnAction(event -> {
             mainLayout.errorMessage.setVisible(false);
+            mainLayout.productTable.getItems().clear();
+            ProductDao pDao = new ProductDao();
+            fetchTableData(mainLayout, pDao);
             window.setScene(mainWindow);
             window.setTitle("Wiki GSB - Accueil");
         });
         addFormLayout.header.link.setOnAction(event -> {
+            mainLayout.productTable.getItems().clear();
+            ProductDao pDao = new ProductDao();
+            fetchTableData(mainLayout, pDao);
             mainLayout.errorMessage.setVisible(false);
             window.setScene(mainWindow);
             window.setTitle("Wiki GSB - Accueil");
@@ -161,7 +172,7 @@ public class Main extends Application {
             mainLayout.colName.setCellValueFactory(new PropertyValueFactory<>("nameProduct"));
             mainLayout.colRef.setCellValueFactory(new PropertyValueFactory<>("refProduct"));
             mainLayout.colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-            mainLayout.colRisk.setCellValueFactory(new PropertyValueFactory<>("risk"));
+            mainLayout.colQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         }
     }
 
@@ -188,6 +199,13 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        try {
+            URL iconURL = Main.class.getResource("util/g_logo.png");
+            java.awt.Image image = new ImageIcon(iconURL).getImage();
+            com.apple.eawt.Application.getApplication().setDockIconImage(image);
+        } catch (Exception e) {
+            // Won't work on Windows or Linux.
+        }
         launch(args);
     }
 }

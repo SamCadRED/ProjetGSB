@@ -1,5 +1,7 @@
 package view;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -21,7 +23,7 @@ public class AddProductForm extends AnchorPane {
     Label priceLib = new Label("Prix (TTC) :");
     Label moleculeLib = new Label("Molecule :");
     Label manufacturerLib = new Label("Fabriquant :");
-    Label riskLib = new Label("Risque :");
+    Label quantityLib = new Label("Quantité (mg) :");
     Label descLib = new Label("Description :");
 
     public TextField productName = new TextField();
@@ -29,7 +31,7 @@ public class AddProductForm extends AnchorPane {
     public TextField price = new TextField();
     public TextField molecule = new TextField();
     public TextField manufacturer = new TextField();
-    public TextField risk = new TextField();
+    public TextField quantity = new TextField();
     public TextField description = new TextField();
 
     public Button addProduct = new Button("Ajouter");
@@ -45,6 +47,32 @@ public class AddProductForm extends AnchorPane {
     public void setComposition(){
         addProduct.setDefaultButton(true);
         btnCancel.setCancelButton(true);
+
+        productNameLib.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+        productRefLib.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+        priceLib.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+        moleculeLib.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+        manufacturerLib.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+        quantityLib.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+        descLib.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+
+        price.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d{0,7}([\\.]\\d{0,3})?")) {
+                    price.setText(oldValue);
+                }
+            }
+        });
+
+        quantity.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d{0,7}?")) {
+                    quantity.setText(oldValue);
+                }
+            }
+        });
 
         productAddedLabel.setVisible(false);
         productAddedLabel.setFont(Font.font("Arial", FontWeight.BOLD, 30));
@@ -67,8 +95,8 @@ public class AddProductForm extends AnchorPane {
 
         formPanel.add(priceLib,0,2);
         formPanel.add(price,1,2);
-        formPanel.add(riskLib,3,2);
-        formPanel.add(risk,4,2);
+        formPanel.add(quantityLib,3,2);
+        formPanel.add(quantity,4,2);
 
         formPanel.add(descLib,0,3);
         formPanel.add(description,1,3,4,1);
