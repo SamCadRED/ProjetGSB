@@ -112,10 +112,12 @@ public class Main extends Application {
             window.setTitle("Wiki GSB");
         });
         productLayout.header.link.setOnAction(event -> {
+            mainLayout.errorMessage.setVisible(false);
             window.setScene(mainWindow);
             window.setTitle("Wiki GSB - Accueil");
         });
         addFormLayout.header.link.setOnAction(event -> {
+            mainLayout.errorMessage.setVisible(false);
             window.setScene(mainWindow);
             window.setTitle("Wiki GSB - Accueil");
         });
