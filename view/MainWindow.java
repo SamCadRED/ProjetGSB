@@ -51,8 +51,8 @@ public class MainWindow extends AnchorPane {
         mainGrid.setLayoutY(70);
         mainGrid.setVgap(10);
         mainGrid.setHgap(10);
-        mainGrid.add(productTable,0,0);
+        mainGrid.add(productTable,0,0,2,1);
         mainGrid.add(detailButton,0,1);
-        mainGrid.add(addProduct,0,1);
+        mainGrid.add(addProduct,1,1);
     }
 }

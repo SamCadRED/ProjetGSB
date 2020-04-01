@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import view.*;
 import model.*;
 
@@ -15,7 +16,7 @@ import java.security.NoSuchAlgorithmException;
 public class Main extends Application {
 
     private Stage window;
-    Scene connectionForm, mainWindow, productScene;
+    Scene connectionForm, mainWindow, productScene, productAddScene;
     User user;
     private BorderPane rootLayout;
 
@@ -38,6 +39,9 @@ public class Main extends Application {
 
         ProductDetailScene productLayout = new ProductDetailScene();
         productScene = new Scene(productLayout, 600,400);
+
+        ProductAddForm addFormLayout = new ProductAddForm();
+        productAddScene = new Scene(addFormLayout, 600, 400);
 
         // ActionListener_________________
         // Cherche les données des produits en base et les affiche dans la scene suivante lorsque la connection est validée
@@ -93,6 +97,10 @@ public class Main extends Application {
 
             window.setScene(productScene);
             window.setTitle("Détail du produit");
+        });
+        mainLayout.addProduct.setOnAction(event -> {
+            window.setScene(productAddScene);
+            window.setTitle("Ajouter un produit");
         });
 
         // Ajout des fonctionnalité du lien retour et quitter

@@ -42,32 +42,34 @@ public class ProductAddForm extends AnchorPane {
         addProduct.setDefaultButton(true);
         btnCancel.setCancelButton(true);
 
-        formPanel.setPrefSize(580,280);
+        formPanel.setPrefSize(580,250);
+        formPanel.setVgap(40);
+        formPanel.setHgap(15);
 
         formPanel.add(productNameLib,0,0);
         formPanel.add(productName,1,0);
-        formPanel.add(productRefLib,2,0);
-        formPanel.add(productRef,3,0);
+        formPanel.add(productRefLib,3,0);
+        formPanel.add(productRef,4,0);
 
         formPanel.add(moleculeLib,0,1);
         formPanel.add(molecule,1,1);
-        formPanel.add(manufacturerLib,2,1);
-        formPanel.add(manufacturer,3,1);
+        formPanel.add(manufacturerLib,3,1);
+        formPanel.add(manufacturer,4,1);
 
         formPanel.add(priceLib,0,2);
         formPanel.add(price,1,2);
-        formPanel.add(riskLib,2,2);
-        formPanel.add(risk,3,2);
+        formPanel.add(riskLib,3,2);
+        formPanel.add(risk,4,2);
 
         formPanel.add(descLib,0,3);
-        formPanel.add(description,1,3,3,1);
+        formPanel.add(description,1,3,4,1);
 
         mainGrid.setLayoutX(10);
-        mainGrid.setLayoutY(70);
+        mainGrid.setLayoutY(80);
         mainGrid.setVgap(10);
         mainGrid.setHgap(10);
-        mainGrid.add(formPanel, 0,0);
+        mainGrid.add(formPanel, 0,0,2,1);
         mainGrid.add(addProduct,0,1);
-        mainGrid.add(btnCancel,0,1);
+        mainGrid.add(btnCancel,1,1);
     }
 }

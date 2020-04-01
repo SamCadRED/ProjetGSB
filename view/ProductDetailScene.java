@@ -32,31 +32,6 @@ public class ProductDetailScene extends AnchorPane {
     }
 
     private void setComposition() {
-        infoPanel.setLayoutY(50);
-        infoPanel.setPrefSize(550, 400);
-        infoPanel.setPadding(new Insets(20));
-        infoPanel.setHgap(30);
-        infoPanel.setVgap(30);
 
-        infoPanel.add(productNameLib,0,1);
-        infoPanel.add(productName,1,1);
-
-        infoPanel.add(productRefLib,3,1);
-        infoPanel.add(productRef,4,1);
-
-        infoPanel.add(priceLib,0,2);
-        infoPanel.add(price,1,2);
-
-        infoPanel.add(moleculeLib,3,2);
-        infoPanel.add(molecule,4,2);
-
-        infoPanel.add(labLib,0,3);
-        infoPanel.add(lab,1,3);
-
-        infoPanel.add(riskLib,3,3);
-        infoPanel.add(risk,4,3);
-
-        infoPanel.add(descLib,0,4);
-        infoPanel.add(description,1,4,2,1);
     }
 }
