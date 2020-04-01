@@ -31,7 +31,7 @@ public class MainWindow extends AnchorPane {
 
     private void setComposition() {
         errorMessage.setVisible(false);
-        errorMessage.setTextFill(Color.RED);
+        errorMessage.setId("errorMessage");
         errorMessage.setLayoutX(410);
         errorMessage.setLayoutY(40);
 

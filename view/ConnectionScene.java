@@ -45,7 +45,7 @@ public class ConnectionScene extends AnchorPane {
         gridPane.add(btnConnection,1,3);
 
 
-        errorConnLabel.setTextFill(Color.RED);
+        errorConnLabel.setId("errorMessage");
         errorConnLabel.setVisible(false);
         btnCancel.setVisible(true);
     }

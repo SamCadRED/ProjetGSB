@@ -31,15 +31,19 @@ public class Main extends Application {
     public void initRootLayout() throws IOException {
         ConnectionScene connLayout = new ConnectionScene();
         connectionForm = new Scene(connLayout);
+        setStylesheet(connectionForm);
 
         MainWindow mainLayout = new MainWindow();
         mainWindow = new Scene(mainLayout, 600, 400);
+        setStylesheet(mainWindow);
 
         ProductDetailScene productLayout = new ProductDetailScene();
         productScene = new Scene(productLayout, 600,400);
+        setStylesheet(productScene);
 
         AddProductForm addFormLayout = new AddProductForm();
         addProductScene = new Scene(addFormLayout, 600, 400);
+        setStylesheet(addProductScene);
 
         // ActionListener_________________
         // Cherche les données des produits en base et les affiche dans la scene suivante lorsque la connection est validée
@@ -50,7 +54,7 @@ public class Main extends Application {
             String password = connLayout.passField.getText();
 
             try {
-                if (checkLoginData(login, password)) {
+                if (!login.equals("") && checkLoginData(login, password)) {
                     System.out.println(connLayout.loginField.getText());
                     mainLayout.productTable.getItems().clear();
 
@@ -206,6 +210,10 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void setStylesheet(Scene scene) {
+        scene.getStylesheets().add("util/stylesheet.css");
     }
 
     public static void main(String[] args) {
