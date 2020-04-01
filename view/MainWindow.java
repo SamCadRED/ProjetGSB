@@ -21,6 +21,7 @@ public class MainWindow extends AnchorPane {
 
     public Button detailButton = new Button("Voir le détail");
     public Button addProduct = new Button("Ajouter un médicament");
+    public Button deleteProduct = new Button("Supprimer");
 
     public MainWindow() {
         super();
@@ -45,20 +46,15 @@ public class MainWindow extends AnchorPane {
         productTable.setPrefSize(580,280);
         productTable.getColumns().addAll(colId, colName, colRef, colPrice, colQuantity);
 
-        detailButton.setLayoutX(260);
-        detailButton.setLayoutY(360);
-        detailButton.setVisible(true);
-
-        addProduct.setLayoutX(300);
-        addProduct.setLayoutY(360);
-        addProduct.setVisible(true);
+        deleteProduct.setId("deleteButton");
 
         mainGrid.setLayoutX(10);
         mainGrid.setLayoutY(70);
         mainGrid.setVgap(10);
         mainGrid.setHgap(10);
-        mainGrid.add(productTable,0,0,2,1);
+        mainGrid.add(productTable,0,0,3,1);
         mainGrid.add(detailButton,0,1);
         mainGrid.add(addProduct,1,1);
+        mainGrid.add(deleteProduct,2,1);
     }
 }

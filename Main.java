@@ -98,9 +98,24 @@ public class Main extends Application {
             } else {
                 mainLayout.errorMessage.setVisible(true);
             }
-
-
         });
+
+        // Supprime un médicament
+        mainLayout.deleteProduct.setOnAction(event -> {
+            Product selectedProduct = (Product) mainLayout.productTable.getSelectionModel().getSelectedItem();
+
+            if (selectedProduct != null) {
+                ProductDao pDao = new ProductDao();
+                pDao.delete(selectedProduct);
+
+                mainLayout.productTable.getItems().clear();
+                fetchTableData(mainLayout, pDao);
+                window.setScene(mainWindow);
+            } else {
+                mainLayout.errorMessage.setVisible(true);
+            }
+        });
+
         // Rafraîchit les données de la page lorsque l'on retourne sur la page de produits
         mainLayout.addProduct.setOnAction(event -> {
             addFormLayout.productName.clear();
@@ -177,6 +192,10 @@ public class Main extends Application {
         window.setTitle("Wiki GSB");
         window.setResizable(false);
         window.show();
+    }
+
+    public void loadMainWindow() {
+
     }
 
     public void fetchTableData(MainWindow mainLayout, ProductDao pDao) {
