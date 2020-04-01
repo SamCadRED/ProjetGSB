@@ -135,6 +135,16 @@ public class Main extends Application {
             }
         });
 
+        // bouton annuler de l'écran d'ajout de produit
+        addFormLayout.btnCancel.setOnAction(event -> {
+            mainLayout.productTable.getItems().clear();
+            ProductDao pDao = new ProductDao();
+            fetchTableData(mainLayout, pDao);
+            mainLayout.errorMessage.setVisible(false);
+            window.setScene(mainWindow);
+            window.setTitle("Wiki GSB - Accueil");
+        });
+
         // Ajout des fonctionnalité des liens de retour
         mainLayout.header.link.setOnAction(event -> {
             resetConnectionScreen();
