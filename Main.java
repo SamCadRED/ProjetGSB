@@ -114,10 +114,8 @@ public class Main extends Application {
     }
 
     public boolean checkLoginData(String login, String password) throws NoSuchAlgorithmException {
-        //String bdLogin = "sam";
-        //String bdPassword = "sam";
-
         AuthenticationModel auth = new AuthenticationModel();
+
         User user = auth.checkAuth(login, password);
 
         String bdLogin = user.getLogin();
@@ -125,9 +123,10 @@ public class Main extends Application {
 
         if (login.equals(bdLogin) && password.equals(bdPassword)) {
             return true;
-        } else {
+        } else if (user.equals(null)) {
             return false;
         }
+        return false;
     }
 
     public static void main(String[] args) {

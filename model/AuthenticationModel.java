@@ -2,6 +2,8 @@ package model;
 
 import classe.User;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +17,7 @@ public class AuthenticationModel extends Dao {
     public User checkAuth(String login, String password) throws NoSuchAlgorithmException {
         User u = new User();
 
-        String hashWord = hashString(password);
+        String hashWord = stringToHash(password);
         String SQL = "SELECT * FROM " + this.table + " WHERE `login` = " + "'" + login + "';";
         System.out.println(SQL);
         try {
@@ -43,10 +45,19 @@ public class AuthenticationModel extends Dao {
         return u;
     }
 
-    public String hashString(String string) {
-        String hashCode;
-        hashCode = string;
+    public String stringToHash(String originalString) throws NoSuchAlgorithmException {
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        byte[] hash = digest.digest(originalString.getBytes(StandardCharsets.UTF_8));
 
-        return hashCode;
+        StringBuffer hexString = new StringBuffer();
+        for (int i = 0; i < hash.length; i++) {
+            String hex = Integer.toHexString(0xff & hash[i]);
+            if(hex.length() == 1) hexString.append('0');
+            hexString.append(hex);
+        }
+        String hashOut = hexString.toString();
+
+        System.out.println(hashOut);
+        return originalString;// hashout;
     }
 }

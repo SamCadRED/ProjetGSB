@@ -10,7 +10,7 @@ public class AuthenticationController {
         super();
     }
 
-    public User checkAuth(String login, String password){
+    public User checkAuth(String login, String password) {
         AuthenticationModel auth = new AuthenticationModel();
         User user;
         try {
