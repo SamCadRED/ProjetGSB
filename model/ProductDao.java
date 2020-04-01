@@ -21,17 +21,19 @@ public class ProductDao extends Dao {
         String ref = obj.getRefProduct();
         double price = obj.getPrice();
         String molecule = obj.getMolecule();
+        String manufacturer = obj.getManufacturer();
         int risk = obj.getRisk();
-        String SQL = "INSERT INTO `Product` (`idProduct`, `nameProduct`, `refProduct`, `price`, `molecule`, `risk`) VALUES (NULL, '";
+        String description = obj.getDescription();
+        String SQL = "INSERT INTO `Product` (`idProduct`, `nameProduct`, `refProduct`, `price`, `manufacturer`, `molecule`, `risk`, `description`) VALUES (NULL, '";
         try {
             this.conn.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY
-            ).executeUpdate(SQL + name + "', '" + ref + "', " + price + "', '" + molecule + "', '"+ risk + "')'");
+            ).executeUpdate(SQL + name + "', '" + ref + "', " + price + ", '" + molecule + "', '" + manufacturer + "', " + risk + ", '" + description + "');");
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println(name + ref + price + molecule + risk);
+            System.out.println(SQL + name + "', '" + ref + "', " + price + ", '" + molecule + "', '" + manufacturer + "', " + risk + ", '" + description + "');");
             return false;
         }
     }
@@ -42,13 +44,15 @@ public class ProductDao extends Dao {
         String ref = obj.getRefProduct();
         double price = obj.getPrice();
         String molecule = obj.getMolecule();
+        String manufacturer = obj.getManufacturer();
         int risk = obj.getRisk();
+        String description = obj.getDescription();
         String SQL = "UPDATE `Product` SET `name`='";
         try {
             this.conn.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY
-            ).executeUpdate(SQL + name + "',`refProduct`='" + ref + "' `price`='" + price + "' `molecule`='" + molecule + "' `risk`='" + risk + "' WHERE `idProduct`="+id);
+            ).executeUpdate(SQL + name + "',`refProduct`='" + ref + "' `price`='" + price + "' `molecule`='" + molecule + "' `risk`=" + risk + "' WHERE `idProduct`="+id);
             return true;
         } catch (SQLException e) {
             e.printStackTrace();

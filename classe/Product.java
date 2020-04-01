@@ -20,6 +20,16 @@ public class Product {
         this.idProduct = idProduct;
     }
 
+    public Product(String nameProduct, String refProduct, double price, String molecule, String manufacturer, int risk, String description) {
+        this.nameProduct = nameProduct;
+        this.refProduct = refProduct;
+        this.price = price;
+        this.molecule = molecule;
+        this.manufacturer = manufacturer;
+        this.risk = risk;
+        this.description = description;
+    }
+
     public Product(int idProduct, String nameProduct, String refProduct, double price, String molecule, String manufacturer, int risk, String description) {
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;

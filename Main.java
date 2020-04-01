@@ -69,7 +69,7 @@ public class Main extends Application {
             resetConnectionScreen();
         });
 
-        // Passe à la scene suivante "détail" avec l'ID
+        // Passe à la scene "détail" avec l'ID du produit sélectionné
         mainLayout.detailButton.setOnAction(e -> {
             Product selectedProduct = (Product) mainLayout.productTable.getSelectionModel().getSelectedItem();
 
@@ -100,9 +100,24 @@ public class Main extends Application {
 
         // Partie fonctionnelle d'ajout de produits
         addFormLayout.addProduct.setOnAction(event -> {
-            System.out.println("Produit Ajouté !");
-            addFormLayout.mainGrid.setVisible(false);
-            addFormLayout.productAddedLabel.setVisible(true);
+            String productName =  addFormLayout.productName.getText();
+            String productRef = addFormLayout.productRef.getText();
+            int price = Integer.parseInt(addFormLayout.price.getText());
+            String molecule = addFormLayout.molecule.getText();
+            String manufacturer = addFormLayout.manufacturer.getText();
+            int risk = Integer.parseInt(addFormLayout.risk.getText());
+            String description = addFormLayout.description.getText();
+            Product product = new Product(productName, productRef, price, molecule, manufacturer, risk, description);
+            if (product != null) {
+                ProductDao productDao = new ProductDao();
+                productDao.add(product);
+
+                System.out.println("Produit Ajouté !");
+                addFormLayout.mainGrid.setVisible(false);
+                addFormLayout.productAddedLabel.setVisible(true);
+            } else {
+                System.out.println("Remplissez tous les champs requis");
+            }
         });
 
         // Ajout des fonctionnalité des liens de retour
