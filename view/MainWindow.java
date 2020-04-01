@@ -6,12 +6,14 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Font;
+import javafx.scene.paint.Color;
 
 public class MainWindow extends AnchorPane {
     public WindowHeader header = new WindowHeader("Produits","Quitter");
     public TableView productTable = new TableView();
     GridPane mainGrid = new GridPane();
+    public Label errorMessage = new Label("Veuillez sélectionner un produit");
+
     public TableColumn<Product, String> colId = new TableColumn<>("ID");
     public TableColumn<Product, String> colName = new TableColumn<>("Nom");
     public TableColumn<Product, String> colRef = new TableColumn<>("Reference");
@@ -25,11 +27,16 @@ public class MainWindow extends AnchorPane {
         super();
         setComposition();
         this.setBackground(Background.EMPTY);
-        this.getChildren().addAll(header, mainGrid);
+        this.getChildren().addAll(header, mainGrid, errorMessage);
     }
 
     private void setComposition() {
-        colId.setVisible(true);
+        errorMessage.setVisible(false);
+        errorMessage.setTextFill(Color.RED);
+        errorMessage.setLayoutX(410);
+        errorMessage.setLayoutY(40);
+
+        colId.setVisible(false);
         colId.setPrefWidth(80);
         colName.setPrefWidth(80);
         colRef.setPrefWidth(80);

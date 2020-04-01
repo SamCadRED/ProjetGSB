@@ -6,11 +6,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
-public class ProductAddForm extends AnchorPane {
+public class AddProductForm extends AnchorPane {
     public WindowHeader header = new WindowHeader("Ajouter un produit", "Retour");
-    GridPane mainGrid = new GridPane();
+    public GridPane mainGrid = new GridPane();
     GridPane formPanel = new GridPane();
+
+    public Label productAddedLabel = new Label("Produit Ajouté !");
 
     Label productNameLib = new Label("Produit :");
     Label productRefLib = new Label("Reference :");
@@ -31,16 +35,21 @@ public class ProductAddForm extends AnchorPane {
     public Button addProduct = new Button("Ajouter");
     public Button btnCancel = new Button("Annuler");
 
-    public ProductAddForm(){
+    public AddProductForm(){
         super();
         setComposition();
         this.setBackground(Background.EMPTY);
-        this.getChildren().addAll(header, mainGrid);
+        this.getChildren().addAll(header, mainGrid, productAddedLabel);
     }
 
     public void setComposition(){
         addProduct.setDefaultButton(true);
         btnCancel.setCancelButton(true);
+
+        productAddedLabel.setVisible(false);
+        productAddedLabel.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+        productAddedLabel.setLayoutX(10);
+        productAddedLabel.setLayoutY(80);
 
         formPanel.setPrefSize(580,250);
         formPanel.setVgap(40);
@@ -68,6 +77,7 @@ public class ProductAddForm extends AnchorPane {
         mainGrid.setLayoutY(80);
         mainGrid.setVgap(10);
         mainGrid.setHgap(10);
+        mainGrid.setVisible(true);
         mainGrid.add(formPanel, 0,0,2,1);
         mainGrid.add(addProduct,0,1);
         mainGrid.add(btnCancel,1,1);
