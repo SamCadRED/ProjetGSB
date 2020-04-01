@@ -16,7 +16,7 @@ import java.security.NoSuchAlgorithmException;
 public class Main extends Application {
 
     private Stage window;
-    Scene connectionForm, mainWindow, productScene, addProductScene;
+    Scene connectionForm, mainWindow, productScene, addProductScene, adminScene;
     User user;
 
     @Override
@@ -45,6 +45,10 @@ public class Main extends Application {
         addProductScene = new Scene(addFormLayout, 600, 400);
         setStylesheet(addProductScene);
 
+        AdminPage adminLayout = new AdminPage();
+        adminScene = new Scene(adminLayout, 600,400);
+        setStylesheet(adminScene);
+
         // ActionListener_________________
         // Cherche les données des produits en base et les affiche dans la scene suivante lorsque la connection est validée
         connLayout.btnConnection.setOnAction(e -> {
@@ -55,14 +59,8 @@ public class Main extends Application {
 
             try {
                 if (!login.equals("") && checkLoginData(login, password)) {
-                    System.out.println(connLayout.loginField.getText());
-                    mainLayout.productTable.getItems().clear();
-
                     fetchTableData(mainLayout, pDao);
-
-                    window.setScene(mainWindow);
-                    window.setTitle("Wiki GSB - Accueil");
-                    System.out.println("Login & Password Ok");
+                    resetMainScreen(mainLayout);
                 } else {
                     connLayout.errorConnLabel.setVisible(true);
                     System.out.println("Wrong Login and Password");
@@ -108,9 +106,8 @@ public class Main extends Application {
                 ProductDao pDao = new ProductDao();
                 pDao.delete(selectedProduct);
 
-                mainLayout.productTable.getItems().clear();
                 fetchTableData(mainLayout, pDao);
-                window.setScene(mainWindow);
+                resetMainScreen(mainLayout);
             } else {
                 mainLayout.errorMessage.setVisible(true);
             }
@@ -156,12 +153,7 @@ public class Main extends Application {
 
         // bouton annuler de l'écran d'ajout de produit
         addFormLayout.btnCancel.setOnAction(event -> {
-            mainLayout.productTable.getItems().clear();
-            ProductDao pDao = new ProductDao();
-            fetchTableData(mainLayout, pDao);
-            mainLayout.errorMessage.setVisible(false);
-            window.setScene(mainWindow);
-            window.setTitle("Wiki GSB - Accueil");
+            resetMainScreen(mainLayout);
         });
 
         // Ajout des fonctionnalité des liens de retour
@@ -171,20 +163,18 @@ public class Main extends Application {
             window.setTitle("Wiki GSB");
         });
         productLayout.header.link.setOnAction(event -> {
-            mainLayout.errorMessage.setVisible(false);
-            mainLayout.productTable.getItems().clear();
-            ProductDao pDao = new ProductDao();
-            fetchTableData(mainLayout, pDao);
-            window.setScene(mainWindow);
-            window.setTitle("Wiki GSB - Accueil");
+            resetMainScreen(mainLayout);
         });
         addFormLayout.header.link.setOnAction(event -> {
-            mainLayout.productTable.getItems().clear();
-            ProductDao pDao = new ProductDao();
-            fetchTableData(mainLayout, pDao);
-            mainLayout.errorMessage.setVisible(false);
-            window.setScene(mainWindow);
-            window.setTitle("Wiki GSB - Accueil");
+            resetMainScreen(mainLayout);
+        });
+        mainLayout.adminLink.setOnAction(event -> {
+            // TODO fetch all data from user table
+            window.setScene(adminScene);
+            window.setTitle("Wiki GSB - Administration");
+        });
+        adminLayout.header.link.setOnAction(event -> {
+            resetMainScreen(mainLayout);
         });
 
         // fin de la fonction init
@@ -229,6 +219,15 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void resetMainScreen(MainWindow mainLayout) {
+        mainLayout.productTable.getItems().clear();
+        ProductDao pDao = new ProductDao();
+        fetchTableData(mainLayout, pDao);
+        mainLayout.errorMessage.setVisible(false);
+        window.setScene(mainWindow);
+        window.setTitle("Wiki GSB - Accueil");
     }
 
     private void setStylesheet(Scene scene) {

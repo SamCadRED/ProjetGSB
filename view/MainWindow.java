@@ -13,6 +13,8 @@ public class MainWindow extends AnchorPane {
     GridPane mainGrid = new GridPane();
     public Label errorMessage = new Label("Veuillez sélectionner un produit");
 
+    public Hyperlink adminLink = new Hyperlink("Administration");
+
     public TableColumn<Product, String> colId = new TableColumn<>("ID");
     public TableColumn<Product, String> colName = new TableColumn<>("Nom");
     public TableColumn<Product, String> colRef = new TableColumn<>("Reference");
@@ -27,14 +29,18 @@ public class MainWindow extends AnchorPane {
         super();
         setComposition();
         this.setBackground(Background.EMPTY);
-        this.getChildren().addAll(header, mainGrid, errorMessage);
+        this.getChildren().addAll(header, mainGrid, errorMessage, adminLink);
     }
 
     private void setComposition() {
         errorMessage.setVisible(false);
         errorMessage.setId("errorMessage");
-        errorMessage.setLayoutX(410);
-        errorMessage.setLayoutY(40);
+        errorMessage.setLayoutX(200);
+        errorMessage.setLayoutY(43);
+
+        adminLink.setLayoutX(500);
+        adminLink.setLayoutY(40);
+        adminLink.setStyle("-fx-border-width: 0px;");
 
         colId.setVisible(false);
         colId.setPrefWidth(80);

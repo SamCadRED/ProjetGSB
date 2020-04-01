@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AuthenticationModel extends Dao {
-    User errorUser = new User(0, "Error", "Error", "Error", "Error");
+    User errorUser = new User(0, "Error", "Error", "Error", "Error", false);
     public AuthenticationModel() {
         super();
         this.table = "`User`";
