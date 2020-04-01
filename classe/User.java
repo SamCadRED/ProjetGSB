@@ -7,15 +7,17 @@ public class User {
     private String nom;
     private String prenom;
     private String password;
+    private boolean isAdmin;
 
     public User() {}
 
-    public User(int id, String login, String nom, String prenom, String password) {
+    public User(int id, String login, String nom, String prenom, String password, boolean isAdmin) {
         this.id = id;
         this.login = login;
         this.nom = nom;
         this.prenom = prenom;
         this.password = password;
+        this.isAdmin = isAdmin;
     }
 
     public int getId() {
@@ -52,6 +54,14 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 
     public void setPassword(String password) {

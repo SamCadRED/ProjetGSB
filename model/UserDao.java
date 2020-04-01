@@ -75,7 +75,7 @@ public class UserDao extends Dao<User> {
             ).executeQuery("SELECT * FROM User WHERE idUser = " + id);
 
             if (rs.first()) {
-                user = new User(id,rs.getString("login"), rs.getString("nom"), rs.getString("prenom"), rs.getString("motDePasse"));
+                user = new User(id,rs.getString("login"), rs.getString("nom"), rs.getString("prenom"), rs.getString("motDePasse"), rs.getBoolean("isAdmin"));
             }
 
         } catch (SQLException e) {

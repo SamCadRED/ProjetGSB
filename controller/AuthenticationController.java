@@ -6,7 +6,7 @@ import model.AuthenticationModel;
 import java.security.NoSuchAlgorithmException;
 
 public class AuthenticationController {
-    User errorUser = new User(0, "Error", "Error", "Error", "Error");
+    User errorUser = new User(0, "Error", "Error", "Error", "Error",false);
     public AuthenticationController() {
         super();
     }
