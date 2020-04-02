@@ -1,3 +1,100 @@
+/*
+https://wheelercode.wordpress.com/javafx-css-properties-selectors-list/
+http://fxexperience.com/2011/12/styling-fx-buttons-with-css/
+https://www.callicoder.com/javafx-css-tutorial/
+https://stackoverflow.com/questions/30326525/the-rule-fx-text-alignment-doesnt-work
+*/
+
+* {
+    -fx-white: #ffffff;
+    -fx-grey: #d8d8d8;
+    -fx-light: #ececec;
+    -fx-dark: #585858;
+    -fx-focus: #a1a1a1;
+}
+.root {
+    -fx-font-size: 14px;
+    -fx-font-family: Arial;
+    -fx-background-color: #8495f8, linear-gradient(#d1f4ff, #a7a8f5 );
+}
+
+#title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
 #errorMessage {
     -fx-text-fill: red
+}
+
+.label {
+}
+
+.button {
+    -fx-background-color: -fx-light;
+    -fx-text-fill: black;
+    -fx-background-radius: 0;
+}
+.button:hover {
+    -fx-background-color: -fx-dark;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
+}
+
+.text-field {
+    -fx-background-color: -fx-light;
+    -fx-text-fill: black;
+    -fx-background-radius: 10;
+    -fx-border-color: -fx-focus;
+    -fx-border-radius: 10;
+    
+}
+.text-field:focused {
+    -fx-background-color: -fx-grey;
+    -fx-border-color: -fx-dark;
+    -fx-border-radius: 10;
+}
+
+.hyperlink {
+    -fx-text-fill: -fx-dark
+}
+.hyperlink:hover {
+    -fx-text-fill: rgb(53, 104, 243);
+    -fx-underline: true;
+}
+
+.table-view{
+    -fx-background-color: black;    
+ }
+ .table-view:focused{
+    -fx-background-color: black;
+}
+.table-view .filler {
+    -fx-background-color: -fx-grey;
+}
+.table-view .column-header-background{
+    -fx-background-color: -fx-grey;
+    -fx-border-color: -fx-dark;
+}
+.table-view .column-header-background .label{
+    -fx-background-color: -fx-grey;
+    -fx-text-fill: -fx-dark;
+}
+.table-view .column {
+    -fx-border-color: -fx-dark;
+}
+.table-view .column-header {
+    -fx-background-color: -fx-grey;
+}
+.table-view .table-cell{
+    -fx-text-fill: black;
+    -fx-border-color: transparent;
+}
+.table-row-cell{
+    -fx-background-color: -fx-light;
+}
+.table-row-cell:odd{
+    -fx-background-color: -fx-grey;
+}
+.table-row-cell:selected {
+    -fx-background-color: -fx-focus;
 }

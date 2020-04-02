@@ -5,7 +5,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 
 public class MainWindow extends AnchorPane {
     public WindowHeader header = new WindowHeader("Produits","Quitter");
