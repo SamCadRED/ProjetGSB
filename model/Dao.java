@@ -13,7 +13,7 @@ public class Dao<T> {
             Class.forName("com.mysql.jdbc.Driver");
             System.out.println("DRIVER OK !");
 
-            String url = "jdbc:mysql://localhost:8889/gsb_app";
+            String url = "jdbc:mysql://192.168.1.28:8889/gsb_app";
 
             conn = DriverManager.getConnection(url,"root","root");
             System.out.println("Connection to DB successful !");
