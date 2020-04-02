@@ -206,6 +206,8 @@ public class Main extends Application {
 
         String bdLogin = user.getLogin();
         String bdPassword = user.getPassword();
+        System.out.println("checkLoginData : " + bdPassword);
+        password = auth.stringToHash(password);
 
         if (login.equals(bdLogin) && password.equals(bdPassword)) {
             return true;

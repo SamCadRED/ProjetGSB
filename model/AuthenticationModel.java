@@ -17,8 +17,9 @@ public class AuthenticationModel extends Dao {
 
     public User checkAuth(String login, String password) throws NoSuchAlgorithmException {
         User u = new User();
-
+        System.out.println("checkAuth : " + login + " / " + password);
         String hashWord = stringToHash(password);
+        System.out.println(hashWord);
         String SQL = "SELECT * FROM " + this.table + " WHERE `login` = " + "'" + login + "';";
         System.out.println(SQL);
         try {
@@ -30,6 +31,7 @@ public class AuthenticationModel extends Dao {
                 u.setNom(rs.getString(3));
                 u.setPrenom(rs.getString(4));
                 u.setPassword(rs.getString(5));
+                u.setAdmin(rs.getBoolean(6));
             }
             if (u.getLogin().equals(login) && u.getPassword().equals(hashWord)) {
                 return u;
@@ -59,6 +61,6 @@ public class AuthenticationModel extends Dao {
         String hashOut = hexString.toString();
 
         System.out.println(hashOut);
-        return originalString;// hashout;
+        return hashOut;
     }
 }
