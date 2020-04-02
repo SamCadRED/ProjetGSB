@@ -18,7 +18,7 @@ public class MainWindow extends AnchorPane {
     public TableColumn<Product, String> colName = new TableColumn<>("Nom");
     public TableColumn<Product, String> colRef = new TableColumn<>("Reference");
     public TableColumn<Product, String> colPrice = new TableColumn<>("Prix");
-    public TableColumn<Product, String> colQuantity = new TableColumn<>("Risque");
+    public TableColumn<Product, String> colQuantity = new TableColumn<>("Quantité");
 
     public Button detailButton = new Button("Voir le détail");
     public Button addProduct = new Button("Ajouter un médicament");
@@ -43,10 +43,10 @@ public class MainWindow extends AnchorPane {
 
         colId.setVisible(false);
         colId.setPrefWidth(80);
-        colName.setPrefWidth(80);
-        colRef.setPrefWidth(80);
-        colPrice.setPrefWidth(80);
-        colQuantity.setPrefWidth(50);
+        colName.setPrefWidth(100);
+        colRef.setPrefWidth(250);
+        colPrice.setPrefWidth(100);
+        colQuantity.setPrefWidth(100);
 
         productTable.setPrefSize(580,280);
         productTable.getColumns().addAll(colId, colName, colRef, colPrice, colQuantity);
