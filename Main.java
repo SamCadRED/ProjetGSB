@@ -245,7 +245,7 @@ public class Main extends Application {
         ProductDao pDao = new ProductDao();
         productFetchTableData(mainLayout, pDao);
         mainLayout.errorMessage.setVisible(false);
-        window.setScene(mainWindow);
+        window.setScene(mainWindow); 
         window.setTitle("Wiki GSB - Accueil");
     }
 
