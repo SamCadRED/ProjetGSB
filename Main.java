@@ -239,7 +239,7 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-
+    
     private void resetMainScreen(MainWindow mainLayout) {
         mainLayout.productTable.getItems().clear();
         ProductDao pDao = new ProductDao();
