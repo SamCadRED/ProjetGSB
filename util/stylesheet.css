@@ -43,15 +43,15 @@ https://stackoverflow.com/questions/30326525/the-rule-fx-text-alignment-doesnt-w
 .text-field {
     -fx-background-color: -fx-light;
     -fx-text-fill: black;
-    -fx-background-radius: 10;
+    -fx-background-radius: 5;
     -fx-border-color: -fx-focus;
-    -fx-border-radius: 10;
+    -fx-border-radius: 5;
     
 }
 .text-field:focused {
     -fx-background-color: -fx-grey;
     -fx-border-color: -fx-dark;
-    -fx-border-radius: 10;
+    -fx-border-radius: 5;
 }
 
 .hyperlink {
@@ -70,6 +70,9 @@ https://stackoverflow.com/questions/30326525/the-rule-fx-text-alignment-doesnt-w
 }
 .table-view .filler {
     -fx-background-color: -fx-grey;
+}
+.table-view .table-column {
+    -fx-alignment: CENTER;
 }
 .table-view .column-header-background{
     -fx-background-color: -fx-grey;
