@@ -59,7 +59,6 @@ public class Main extends Application {
 
             try {
                 if (!login.equals("") && checkLoginData(login, password)) {
-                    fetchTableData(mainLayout, pDao);
                     resetMainScreen(mainLayout);
                 } else {
                     connLayout.errorConnLabel.setVisible(true);
@@ -106,7 +105,7 @@ public class Main extends Application {
                 ProductDao pDao = new ProductDao();
                 pDao.delete(selectedProduct);
 
-                fetchTableData(mainLayout, pDao);
+                productFetchTableData(mainLayout, pDao);
                 resetMainScreen(mainLayout);
             } else {
                 mainLayout.errorMessage.setVisible(true);
@@ -169,7 +168,7 @@ public class Main extends Application {
             resetMainScreen(mainLayout);
         });
         mainLayout.adminLink.setOnAction(event -> {
-            // TODO fetch all data from user table
+            userFetchTableData(adminLayout);
             window.setScene(adminScene);
             window.setTitle("Wiki GSB - Administration");
         });
@@ -184,11 +183,7 @@ public class Main extends Application {
         window.show();
     }
 
-    public void loadMainWindow() {
-
-    }
-
-    public void fetchTableData(MainWindow mainLayout, ProductDao pDao) {
+    private void productFetchTableData(MainWindow mainLayout, ProductDao pDao) {
         for (Product p : pDao.fetchAllProduct()) {
             mainLayout.productTable.getItems().add(p);
             mainLayout.colId.setCellValueFactory(new PropertyValueFactory<>("idProduct"));
@@ -199,7 +194,20 @@ public class Main extends Application {
         }
     }
 
-    public boolean checkLoginData(String login, String password) throws NoSuchAlgorithmException {
+    private void userFetchTableData(AdminPage adminLayout) {
+        UserDao uDao = new UserDao();
+        adminLayout.userTable.getItems().clear();
+        for (User u : uDao.fetchAllUser()) {
+            adminLayout.userTable.getItems().add(u);
+            adminLayout.colId.setCellValueFactory(new PropertyValueFactory<>("idUser"));
+            adminLayout.colLogin.setCellValueFactory(new PropertyValueFactory<>("login"));
+            adminLayout.colName.setCellValueFactory(new PropertyValueFactory<>("nom"));
+            adminLayout.colSurname.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+            adminLayout.colAdmin.setCellValueFactory(new PropertyValueFactory<>("isAdmin"));
+        }
+    }
+
+    private boolean checkLoginData(String login, String password) throws NoSuchAlgorithmException {
         AuthenticationModel auth = new AuthenticationModel();
 
         user = auth.checkAuth(login, password);
@@ -215,7 +223,7 @@ public class Main extends Application {
         return false;
     }
 
-    public void resetConnectionScreen() {
+    private void resetConnectionScreen() {
         try {
             initRootLayout();
         } catch (IOException e) {
@@ -223,10 +231,10 @@ public class Main extends Application {
         }
     }
 
-    public void resetMainScreen(MainWindow mainLayout) {
+    private void resetMainScreen(MainWindow mainLayout) {
         mainLayout.productTable.getItems().clear();
         ProductDao pDao = new ProductDao();
-        fetchTableData(mainLayout, pDao);
+        productFetchTableData(mainLayout, pDao);
         mainLayout.errorMessage.setVisible(false);
         window.setScene(mainWindow);
         window.setTitle("Wiki GSB - Accueil");

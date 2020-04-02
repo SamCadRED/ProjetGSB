@@ -1,9 +1,12 @@
 package model;
 
+import classe.Product;
 import classe.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDao extends Dao<User> {
 
@@ -83,6 +86,28 @@ public class UserDao extends Dao<User> {
         }
         return user;
     }
-
+    public List<User> fetchAllUser() {
+        List<User> items = new ArrayList<User>();
+        User u;
+        try {
+            ResultSet rs = this.conn.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM "+this.table+" ORDER BY login ASC;");
+            while (rs.next()) {
+                u = new User();
+                u.setId(rs.getInt(1));
+                u.setLogin(rs.getString(2));
+                u.setNom(rs.getString(3));
+                u.setPrenom(rs.getString(4));
+                u.setPassword(rs.getString(5));
+                u.setAdmin(rs.getBoolean(6));
+                items.add(u);
+            }
+            return items;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 }
