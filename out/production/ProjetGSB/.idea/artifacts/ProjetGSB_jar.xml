@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ProjetGSB:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ProjetGSB_jar</output-path>
+    <root id="archive" name="ProjetGSB.jar">
+      <element id="module-output" name="ProjetGSB" />
+    </root>
+  </artifact>
+</component>
