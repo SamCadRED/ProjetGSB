@@ -149,10 +149,22 @@ public class Main extends Application {
                 System.out.println("Remplissez tous les champs requis");
             }
         });
-
         // bouton annuler de l'écran d'ajout de produit
         addFormLayout.btnCancel.setOnAction(event -> {
             resetMainScreen(mainLayout);
+        });
+
+        // Page d'adminisatration des utilisateur
+        // Supprimer un utilisateur
+        adminLayout.deleteButton.setOnAction(event -> {
+            User selectedUser = (User) adminLayout.userTable.getSelectionModel().getSelectedItem();
+            if (selectedUser != null) {
+                UserDao userDao = new UserDao();
+                userDao.delete(selectedUser);
+                resetAdminScreen(adminLayout);
+            } else {
+                adminLayout.errorMessage.setVisible(true);
+            }
         });
 
         // Ajout des fonctionnalité des liens de retour
@@ -168,9 +180,7 @@ public class Main extends Application {
             resetMainScreen(mainLayout);
         });
         mainLayout.adminLink.setOnAction(event -> {
-            userFetchTableData(adminLayout);
-            window.setScene(adminScene);
-            window.setTitle("Wiki GSB - Administration");
+            resetAdminScreen(adminLayout);
         });
         adminLayout.header.link.setOnAction(event -> {
             resetMainScreen(mainLayout);
@@ -196,7 +206,6 @@ public class Main extends Application {
 
     private void userFetchTableData(AdminPage adminLayout) {
         UserDao uDao = new UserDao();
-        adminLayout.userTable.getItems().clear();
         for (User u : uDao.fetchAllUser()) {
             adminLayout.userTable.getItems().add(u);
             adminLayout.colId.setCellValueFactory(new PropertyValueFactory<>("idUser"));
@@ -238,6 +247,14 @@ public class Main extends Application {
         mainLayout.errorMessage.setVisible(false);
         window.setScene(mainWindow);
         window.setTitle("Wiki GSB - Accueil");
+    }
+
+    private void resetAdminScreen(AdminPage adminLayout) {
+        adminLayout.userTable.getItems().clear();
+        userFetchTableData(adminLayout);
+        adminLayout.errorMessage.setVisible(false);
+        window.setScene(adminScene);
+        window.setTitle("Wiki GSB - Administration");
     }
 
     private void setStylesheet(Scene scene) {
