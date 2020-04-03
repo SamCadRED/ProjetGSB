@@ -25,6 +25,15 @@ https://stackoverflow.com/questions/30326525/the-rule-fx-text-alignment-doesnt-w
 #errorMessage {
     -fx-text-fill: red
 }
+#validationMessage {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: green
+}
+#labelBold {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
 
 .label {
 }

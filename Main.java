@@ -123,7 +123,7 @@ public class Main extends Application {
             addFormLayout.description.clear();
 
             addFormLayout.productAddedLabel.setVisible(false);
-            addFormLayout.mainGrid.setVisible(true);
+            addFormLayout.mainPane.setVisible(true);
             window.setScene(addProductScene);
             window.setTitle(" Wiki GSB - Ajouter un produit");
         });
@@ -143,7 +143,7 @@ public class Main extends Application {
                 productDao.add(product);
 
                 System.out.println("Produit Ajouté !");
-                addFormLayout.mainGrid.setVisible(false);
+                addFormLayout.mainPane.setVisible(false);
                 addFormLayout.productAddedLabel.setVisible(true);
             } else {
                 System.out.println("Remplissez tous les champs requis");
