@@ -63,10 +63,11 @@ https://stackoverflow.com/questions/30326525/the-rule-fx-text-alignment-doesnt-w
     -fx-border-radius: 5;
 }
 
-.hyperlink {
-    -fx-text-fill: -fx-dark
+.hyperlink, .hyperlink:visited {
+    -fx-text-fill: -fx-dark;
+    -fx-underline: false;
 }
-.hyperlink:hover {
+.hyperlink:hover, .hyperlink:hover:visited {
     -fx-text-fill: rgb(53, 104, 243);
     -fx-underline: true;
 }
