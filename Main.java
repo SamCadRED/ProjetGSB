@@ -16,7 +16,7 @@ import java.security.NoSuchAlgorithmException;
 public class Main extends Application {
 
     private Stage window;
-    Scene connectionForm, mainWindow, productScene, addProductScene, adminScene;
+    Scene connectionForm, mainWindow, productScene, addProductScene, adminScene, addUserScene;
     User user;
 
     @Override
@@ -41,19 +41,22 @@ public class Main extends Application {
         productScene = new Scene(productLayout, 600,400);
         setStylesheet(productScene);
 
-        AddProductForm addFormLayout = new AddProductForm();
-        addProductScene = new Scene(addFormLayout, 600, 400);
+        AddProductForm addProductLayout = new AddProductForm();
+        addProductScene = new Scene(addProductLayout, 600, 400);
         setStylesheet(addProductScene);
 
         AdminPage adminLayout = new AdminPage();
         adminScene = new Scene(adminLayout, 600,400);
         setStylesheet(adminScene);
 
-        // ActionListener_________________
-        // Cherche les données des produits en base et les affiche dans la scene suivante lorsque la connection est validée
-        connLayout.btnConnection.setOnAction(e -> {
-            ProductDao pDao = new ProductDao();
+        AddUserForm addUserLayout = new AddUserForm();
+        addUserScene = new Scene(addUserLayout, 400, 400);
+        setStylesheet(addUserScene);
 
+        // ActionListener
+        // Page de connexion :
+        //  Authentification de l'utilisateur et fetch data
+        connLayout.btnConnection.setOnAction(e -> {
             String login = connLayout.loginField.getText();
             String password = connLayout.passField.getText();
 
@@ -68,13 +71,13 @@ public class Main extends Application {
                 ex.printStackTrace();
             }
         });
-
         // Bouton annuler (efface les données entrées et réinitilaise visuellement la page
         connLayout.btnCancel.setOnAction(event -> {
             resetConnectionScreen();
         });
 
-        // Passe à la scene "détail" avec l'ID du produit sélectionné
+        // Page principale "MainLayout" :
+        // Bouton "détail" => ouvre une nouvelle fenêtre ProductDetailScene
         mainLayout.detailButton.setOnAction(e -> {
             Product selectedProduct = (Product) mainLayout.productTable.getSelectionModel().getSelectedItem();
 
@@ -96,8 +99,7 @@ public class Main extends Application {
                 mainLayout.errorMessage.setVisible(true);
             }
         });
-
-        // Supprime un médicament
+        // Bouton "Supprimer un médicament"
         mainLayout.deleteProduct.setOnAction(event -> {
             Product selectedProduct = (Product) mainLayout.productTable.getSelectionModel().getSelectedItem();
 
@@ -111,51 +113,51 @@ public class Main extends Application {
                 mainLayout.errorMessage.setVisible(true);
             }
         });
-
-        // Rafraîchit les données de la page lorsque l'on retourne sur la page de produits
+        // Bouton "ajouter" => ouvre une nouvelle page AddProductScene
         mainLayout.addProduct.setOnAction(event -> {
-            addFormLayout.productName.clear();
-            addFormLayout.productRef.clear();
-            addFormLayout.price.clear();
-            addFormLayout.molecule.clear();
-            addFormLayout.manufacturer.clear();
-            addFormLayout.quantity.clear();
-            addFormLayout.description.clear();
+            addProductLayout.productName.clear();
+            addProductLayout.productRef.clear();
+            addProductLayout.price.clear();
+            addProductLayout.molecule.clear();
+            addProductLayout.manufacturer.clear();
+            addProductLayout.quantity.clear();
+            addProductLayout.description.clear();
 
-            addFormLayout.productAddedLabel.setVisible(false);
-            addFormLayout.mainPane.setVisible(true);
+            addProductLayout.productAddedLabel.setVisible(false);
+            addProductLayout.mainPane.setVisible(true);
             window.setScene(addProductScene);
             window.setTitle(" Wiki GSB - Ajouter un produit");
         });
 
-        // Partie fonctionnelle d'ajout de produits
-        addFormLayout.addProduct.setOnAction(event -> {
-            String productName =  addFormLayout.productName.getText();
-            String productRef = addFormLayout.productRef.getText();
-            Double price = Double.parseDouble(addFormLayout.price.getText());
-            String molecule = addFormLayout.molecule.getText();
-            String manufacturer = addFormLayout.manufacturer.getText();
-            int quantity = Integer.parseInt(addFormLayout.quantity.getText());
-            String description = addFormLayout.description.getText();
+        // Page d'ajout d'un produit
+        // Bouton "Ajouter" de la scene ajouter un produit
+        addProductLayout.addProduct.setOnAction(event -> {
+            String productName =  addProductLayout.productName.getText();
+            String productRef = addProductLayout.productRef.getText();
+            Double price = Double.parseDouble(addProductLayout.price.getText());
+            String molecule = addProductLayout.molecule.getText();
+            String manufacturer = addProductLayout.manufacturer.getText();
+            int quantity = Integer.parseInt(addProductLayout.quantity.getText());
+            String description = addProductLayout.description.getText();
             Product product = new Product(productName, productRef, price, molecule, manufacturer, quantity, description);
             if (product != null) {
                 ProductDao productDao = new ProductDao();
                 productDao.add(product);
 
                 System.out.println("Produit Ajouté !");
-                addFormLayout.mainPane.setVisible(false);
-                addFormLayout.productAddedLabel.setVisible(true);
+                addProductLayout.mainPane.setVisible(false);
+                addProductLayout.productAddedLabel.setVisible(true);
             } else {
                 System.out.println("Remplissez tous les champs requis");
             }
         });
-        // bouton annuler de l'écran d'ajout de produit
-        addFormLayout.btnCancel.setOnAction(event -> {
+        // bouton annuler de scene d'ajout de produit
+        addProductLayout.btnCancel.setOnAction(event -> {
             resetMainScreen(mainLayout);
         });
 
-        // Page d'adminisatration des utilisateur
-        // Supprimer un utilisateur
+        // Page d'administration des utilisateur
+        // Bouton Supprimer un utilisateur
         adminLayout.deleteButton.setOnAction(event -> {
             User selectedUser = (User) adminLayout.userTable.getSelectionModel().getSelectedItem();
             if (selectedUser != null) {
@@ -166,24 +168,56 @@ public class Main extends Application {
                 adminLayout.errorMessage.setVisible(true);
             }
         });
+        // Bouton Ajouter un utilisateur
+        adminLayout.addButton.setOnAction(event -> {
+            addUserLayout.login.clear();
+            addUserLayout.name.clear();
+            addUserLayout.surname.clear();
+            addUserLayout.password.clear();
+            addUserLayout.userAddedLabel.setVisible(false);
+            addUserLayout.mainPane.setVisible(true);
+            window.setScene(addUserScene);
+            window.setTitle(" Wiki GSB - Ajouter un utilisateur");
+        });
+
+        // Page d'ajout d'un utilisateur (AddUserScene)
+        // Bouton annuler
+        addUserLayout.btnCancel.setOnAction(event -> {
+            resetAdminScreen(adminLayout);
+        });
+        // Bontou ajouter
+        addUserLayout.addUser.setOnAction(event -> {
+            // TODO => verifier le formulaire et écrire en base
+            addUserLayout.userAddedLabel.setVisible(true);
+            addUserLayout.mainPane.setVisible(false);
+        });
 
         // Ajout des fonctionnalité des liens de retour
+        // Bouton "quitter" de la page principale
         mainLayout.header.link.setOnAction(event -> {
             resetConnectionScreen();
             window.setScene(connectionForm);
             window.setTitle("Wiki GSB");
         });
+        // Bouton retour de la page des détail produit
         productLayout.header.link.setOnAction(event -> {
             resetMainScreen(mainLayout);
         });
-        addFormLayout.header.link.setOnAction(event -> {
+        // Bouton retour de la page d'ajout de produit
+        addProductLayout.header.link.setOnAction(event -> {
             resetMainScreen(mainLayout);
         });
+        // Bouton "Administrateur" de la page principale
         mainLayout.adminLink.setOnAction(event -> {
             resetAdminScreen(adminLayout);
         });
+        // Bouton "retour" de la page d'administration
         adminLayout.header.link.setOnAction(event -> {
             resetMainScreen(mainLayout);
+        });
+        // Bouton "retour" de la page d'ajout d'utilisateur
+        addUserLayout.header.link.setOnAction(event -> {
+            resetAdminScreen(adminLayout);
         });
 
         // fin de la fonction init
