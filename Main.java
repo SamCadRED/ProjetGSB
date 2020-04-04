@@ -1,6 +1,7 @@
 import classe.Product;
 import classe.User;
 import javafx.application.Application;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -102,7 +103,6 @@ public class Main extends Application {
         // Bouton "Supprimer un médicament"
         mainLayout.deleteProduct.setOnAction(event -> {
             Product selectedProduct = (Product) mainLayout.productTable.getSelectionModel().getSelectedItem();
-
             if (selectedProduct != null) {
                 ProductDao pDao = new ProductDao();
                 pDao.delete(selectedProduct);
@@ -238,8 +238,7 @@ public class Main extends Application {
         }
     }
 
-    private void userFetchTableData(AdminPage adminLayout) {
-        UserDao uDao = new UserDao();
+    private void userFetchTableData(AdminPage adminLayout, UserDao uDao) {
         for (User u : uDao.fetchAllUser()) {
             adminLayout.userTable.getItems().add(u);
             adminLayout.colId.setCellValueFactory(new PropertyValueFactory<>("idUser"));
@@ -247,6 +246,7 @@ public class Main extends Application {
             adminLayout.colName.setCellValueFactory(new PropertyValueFactory<>("nom"));
             adminLayout.colSurname.setCellValueFactory(new PropertyValueFactory<>("prenom"));
             adminLayout.colAdmin.setCellValueFactory(new PropertyValueFactory<>("isAdmin"));
+            //adminLayout.colAdmin.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(u.isAdmin() ? "oui" : "non"));
         }
     }
 
@@ -285,7 +285,8 @@ public class Main extends Application {
 
     private void resetAdminScreen(AdminPage adminLayout) {
         adminLayout.userTable.getItems().clear();
-        userFetchTableData(adminLayout);
+        UserDao uDao = new UserDao();
+        userFetchTableData(adminLayout, uDao);
         adminLayout.errorMessage.setVisible(false);
         window.setScene(adminScene);
         window.setTitle("Wiki GSB - Administration");
@@ -296,13 +297,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        try {
-            URL iconURL = Main.class.getResource("util/g_logo.png");
-            java.awt.Image image = new ImageIcon(iconURL).getImage();
-            // com.apple.eawt.Application.getApplication().setDockIconImage(image);
-        } catch (Exception e) {
-            // Won't work on Windows or Linux.
-        }
+        
         launch(args);
     }
 }

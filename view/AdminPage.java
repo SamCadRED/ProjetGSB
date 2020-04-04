@@ -37,7 +37,7 @@ public class AdminPage extends AnchorPane {
 
         userTable.setPrefSize(580,280);
 
-        colId.setVisible(false);
+        colId.setVisible(true);
         userTable.getColumns().addAll(colId, colName, colSurname, colLogin, colAdmin);
 
         mainGrid.setLayoutX(10);
