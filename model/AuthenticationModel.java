@@ -36,11 +36,11 @@ public class AuthenticationModel extends Dao {
             if (u.getLogin().equals(login) && u.getPassword().equals(hashWord)) {
                 return u;
             } else {
-                return errorUser;
+                return null;
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return errorUser;
+            return null;
         }
     }
 

@@ -186,14 +186,13 @@ public class Main extends Application {
         });
         // Bouton ajouter
         addUserLayout.addUser.setOnAction(event -> {
-            // TODO => verifier le formulaire et écrire en base
             String login = addUserLayout.login.getText();
             String name = addUserLayout.name.getText();
             String surname = addUserLayout.surname.getText();
             String password = addUserLayout.password.getText();
             Boolean isAdmin = addUserLayout.isAdmin.isSelected();
             AuthenticationModel authModel = new AuthenticationModel();
-            if (login != null && name != null && surname != null && password != null) {
+            if (!login.equals("") && !name.equals("") && !surname.equals("") && !password.equals("")) {
                 try {
                     String hashPassword = authModel.stringToHash(password);
                     User user = new User(login, name, surname, hashPassword, isAdmin);
@@ -201,6 +200,8 @@ public class Main extends Application {
                     uDao.add(user);
                     System.out.println("Utilisateur Ajouté !");
                     addUserLayout.userAddedLabel.setVisible(true);
+                    addUserLayout.addUser.setVisible(false);
+                    addUserLayout.btnCancel.setVisible(false);
                     addUserLayout.mainPane.setVisible(false);
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();

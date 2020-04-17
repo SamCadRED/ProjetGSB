@@ -17,14 +17,17 @@ public class UserDao extends Dao<User> {
 
     @Override
     public boolean add(User obj) {
+        String login = obj.getLogin();
         String nom = obj.getNom();
         String prenom = obj.getPrenom();
-        String SQL = "INSERT INTO `User` (`idUser`, `nom`, `prenom`) VALUES (NULL, '";
+        String password = obj.getPassword();
+        boolean isAdmin = obj.isAdmin();
+        String SQL = "INSERT INTO `User` (`idUser`, `login`, `nom`, `prenom`, `motDePasse`, `isAdmin`) VALUES ";
         try {
             this.conn.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY
-            ).executeUpdate(SQL + nom + "', '" + prenom + "')");
+            ).executeUpdate(SQL + "(NULL, " + "'" + login + "', '" + nom + "', '" + prenom + "', '" + password + "', " + isAdmin + " )");
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
