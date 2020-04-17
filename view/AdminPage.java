@@ -1,6 +1,7 @@
 package view;
 
 import classe.Product;
+import classe.User;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -12,11 +13,11 @@ public class AdminPage extends AnchorPane {
     public GridPane mainGrid = new GridPane();
     public Label errorMessage = new Label("Veuillez sélectionner un utilisateur");
 
-    public TableColumn<Product, String> colId = new TableColumn<>("ID");
-    public TableColumn<Product, String> colName = new TableColumn<>("Nom");
-    public TableColumn<Product, String> colSurname = new TableColumn<>("Prénom");
-    public TableColumn<Product, String> colLogin = new TableColumn<>("Login");
-    public TableColumn<Product, String> colAdmin = new TableColumn<>("Admin");
+    public TableColumn<User, String> colId = new TableColumn<>("ID");
+    public TableColumn<User, String> colName = new TableColumn<>("Nom");
+    public TableColumn<User, String> colSurname = new TableColumn<>("Prénom");
+    public TableColumn<User, String> colLogin = new TableColumn<>("Login");
+    public TableColumn<User, String> colAdmin = new TableColumn<>("Admin");
 
     public Button addButton = new Button("Ajouter");
     public Button deleteButton = new Button("Supprimer");

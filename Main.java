@@ -2,6 +2,7 @@ import classe.Product;
 import classe.User;
 import javafx.application.Application;
 import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -9,9 +10,7 @@ import javafx.stage.Stage;
 import view.*;
 import model.*;
 
-import javax.swing.*;
 import java.io.IOException;
-import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 
 public class Main extends Application {
@@ -245,8 +244,7 @@ public class Main extends Application {
             adminLayout.colLogin.setCellValueFactory(new PropertyValueFactory<>("login"));
             adminLayout.colName.setCellValueFactory(new PropertyValueFactory<>("nom"));
             adminLayout.colSurname.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-            adminLayout.colAdmin.setCellValueFactory(new PropertyValueFactory<>("isAdmin"));
-            //adminLayout.colAdmin.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(u.isAdmin() ? "oui" : "non"));
+            adminLayout.colAdmin.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().isAdmin() ? "Oui" : "Non"));
         }
     }
 

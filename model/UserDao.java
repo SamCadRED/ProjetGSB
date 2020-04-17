@@ -1,6 +1,5 @@
 package model;
 
-import classe.Product;
 import classe.User;
 
 import java.sql.ResultSet;

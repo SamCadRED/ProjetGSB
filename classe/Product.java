@@ -1,5 +1,8 @@
 package classe;
 
+// Source des médicaments :
+// http://base-donnees-publique.medicaments.gouv.fr/liste-medicaments-a.php
+
 public class Product {
     private int idProduct;
     private String nameProduct;
