@@ -147,7 +147,7 @@ public class Main extends Application {
                 addProductLayout.mainPane.setVisible(false);
                 addProductLayout.productAddedLabel.setVisible(true);
             } else {
-                System.out.println("Remplissez tous les champs requis");
+                // TODO message d'échec de l'ajout
             }
         });
         // bouton annuler de scene d'ajout de produit
@@ -167,7 +167,7 @@ public class Main extends Application {
                 adminLayout.errorMessage.setVisible(true);
             }
         });
-        // Bouton Ajouter un utilisateur
+        // Bouton Ajouter un utilisateur (AdminPage)
         adminLayout.addButton.setOnAction(event -> {
             addUserLayout.login.clear();
             addUserLayout.name.clear();
@@ -184,11 +184,31 @@ public class Main extends Application {
         addUserLayout.btnCancel.setOnAction(event -> {
             resetAdminScreen(adminLayout);
         });
-        // Bontou ajouter
+        // Bouton ajouter
         addUserLayout.addUser.setOnAction(event -> {
             // TODO => verifier le formulaire et écrire en base
-            addUserLayout.userAddedLabel.setVisible(true);
-            addUserLayout.mainPane.setVisible(false);
+            String login = addUserLayout.login.getText();
+            String name = addUserLayout.name.getText();
+            String surname = addUserLayout.surname.getText();
+            String password = addUserLayout.password.getText();
+            Boolean isAdmin = addUserLayout.isAdmin.isSelected();
+            AuthenticationModel authModel = new AuthenticationModel();
+            if (login != null && name != null && surname != null && password != null) {
+                try {
+                    String hashPassword = authModel.stringToHash(password);
+                    User user = new User(login, name, surname, hashPassword, isAdmin);
+                    UserDao uDao = new UserDao();
+                    uDao.add(user);
+                    System.out.println("Utilisateur Ajouté !");
+                    addUserLayout.userAddedLabel.setVisible(true);
+                    addUserLayout.mainPane.setVisible(false);
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                    addUserLayout.errorMessage.setVisible(true);
+                }
+            } else {
+                addUserLayout.fillAllFields.setVisible(true);
+            }
         });
 
         // Ajout des fonctionnalité des liens de retour

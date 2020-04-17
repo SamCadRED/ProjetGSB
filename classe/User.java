@@ -11,6 +11,15 @@ public class User {
 
     public User() {}
 
+    public User(String login, String nom, String prenom, String password, boolean isAdmin) {
+        this.id = id;
+        this.login = login;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.password = password;
+        this.isAdmin = isAdmin;
+    }
+
     public User(int id, String login, String nom, String prenom, String password, boolean isAdmin) {
         this.id = id;
         this.login = login;

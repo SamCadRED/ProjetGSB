@@ -1,6 +1,5 @@
 package view;
 
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
@@ -8,6 +7,8 @@ public class AddUserForm extends AnchorPane {
     public WindowHeader header = new WindowHeader("Ajouter un utilisateur", "Retour");
     public AnchorPane mainPane = new AnchorPane();
     public Label userAddedLabel = new Label("Utilisateur Ajouté !");
+    public Label fillAllFields = new Label("Veuillez remplir tous les champs");
+    public Label errorMessage = new Label("Une erreur s'est produite veuillez rééssayer");
 
     Label loginLib = new Label("Login :");
     Label nameLib = new Label("Nom :");
@@ -34,7 +35,17 @@ public class AddUserForm extends AnchorPane {
         mainPane.setPrefSize(580,250);
         mainPane.setLayoutX(10);
         mainPane.setLayoutY(80);
-        mainPane.getChildren().addAll(loginLib,login,passwordLib,password,nameLib,name,surnameLib,surname, adminLib, isAdmin);
+        mainPane.getChildren().addAll(fillAllFields,loginLib,login,passwordLib,password,nameLib,name,surnameLib,surname, adminLib, isAdmin, errorMessage);
+
+        fillAllFields.setId("errorMessage");
+        fillAllFields.setLayoutX(0);
+        fillAllFields.setLayoutY(0);
+        fillAllFields.setVisible(false);
+
+        errorMessage.setId("errorMessage");
+        errorMessage.setLayoutX(0);
+        errorMessage.setLayoutY(235);
+        errorMessage.setVisible(false);
 
         loginLib.setId("labelBold");
         nameLib.setId("labelBold");
