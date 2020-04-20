@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AuthenticationModel extends Dao {
-    User errorUser = new User(0, "Error", "Error", "Error", "Error", false);
     public AuthenticationModel() {
         super();
         this.table = "`User`";
@@ -48,6 +47,7 @@ public class AuthenticationModel extends Dao {
         return u;
     }
 
+    // Fonction permettant de "Hasher" le mot de passe fournit en paramètre et de le retourner
     public String stringToHash(String originalString) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] hash = digest.digest(originalString.getBytes(StandardCharsets.UTF_8));

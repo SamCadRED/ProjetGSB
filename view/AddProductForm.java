@@ -99,6 +99,7 @@ public class AddProductForm extends AnchorPane {
         addProduct.setLayoutX(100);
         addProduct.setLayoutY(350);
 
+        // Expressions Régulières (RegEx) permettant de n'accepter que certains caractères dans les champs "prix" et "quantité"
         price.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {

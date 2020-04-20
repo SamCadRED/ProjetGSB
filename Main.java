@@ -240,13 +240,14 @@ public class Main extends Application {
             resetAdminScreen(adminLayout);
         });
 
-        // fin de la fonction init
+        // Fin de la fonction init
         window.setScene(connectionForm);
         window.setTitle("Wiki GSB");
         window.setResizable(false);
         window.show();
     }
 
+    // Récupérer les données de la base dans le tableau de la page d'accueil
     private void productFetchTableData(MainWindow mainLayout, ProductDao pDao) {
         for (Product p : pDao.fetchAllProduct()) {
             mainLayout.productTable.getItems().add(p);
@@ -258,6 +259,7 @@ public class Main extends Application {
         }
     }
 
+    // Récupérer les données de la page d'administration
     private void userFetchTableData(AdminPage adminLayout, UserDao uDao) {
         for (User u : uDao.fetchAllUser()) {
             adminLayout.userTable.getItems().add(u);
@@ -269,6 +271,7 @@ public class Main extends Application {
         }
     }
 
+    // Verification des données de connexion
     private boolean checkLoginData(String login, String password) throws NoSuchAlgorithmException {
         AuthenticationModel auth = new AuthenticationModel();
 
@@ -285,6 +288,7 @@ public class Main extends Application {
         return false;
     }
 
+    // Réinitialise l'écran de connexion
     private void resetConnectionScreen() {
         try {
             initRootLayout();
@@ -292,7 +296,8 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-    
+
+    // Réinitialise l'écran d'accueil
     private void resetMainScreen(MainWindow mainLayout) {
         mainLayout.productTable.getItems().clear();
         ProductDao pDao = new ProductDao();
@@ -302,6 +307,7 @@ public class Main extends Application {
         window.setTitle("Wiki GSB - Accueil");
     }
 
+    // Réinitialise l'écran d'administration
     private void resetAdminScreen(AdminPage adminLayout) {
         adminLayout.userTable.getItems().clear();
         UserDao uDao = new UserDao();
@@ -310,7 +316,7 @@ public class Main extends Application {
         window.setScene(adminScene);
         window.setTitle("Wiki GSB - Administration");
     }
-
+    
     private void setStylesheet(Scene scene) {
         scene.getStylesheets().add("util/stylesheet.css");
     }
