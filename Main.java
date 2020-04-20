@@ -29,6 +29,8 @@ public class Main extends Application {
     }
 
     public void initRootLayout() throws IOException {
+
+        // Initialisation des diférents écrans (scenes) de l'application
         ConnectionScene connLayout = new ConnectionScene();
         connectionForm = new Scene(connLayout);
         setStylesheet(connectionForm);
@@ -316,7 +318,7 @@ public class Main extends Application {
         window.setScene(adminScene);
         window.setTitle("Wiki GSB - Administration");
     }
-    
+
     private void setStylesheet(Scene scene) {
         scene.getStylesheets().add("util/stylesheet.css");
     }
